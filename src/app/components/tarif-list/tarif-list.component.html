@@ -1,0 +1,35 @@
+<div class="headerTitle">
+    <h3>Tarif List</h3>
+  </div>
+
+<table mdbTable small="true">
+  <thead class="black white-text">
+    <tr>
+      <th *ngFor="let head of headerElements; let i = index" scope="col">{{head}} </th>
+    </tr>
+    <tr class="white black-text">
+        <th *ngFor="let num of headerNumbers" scope="col">{{num}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let teacher of teachersList; let i = index">
+      <th scope="row">{{i+1}}</th> <!-- # -->
+      <td>{{teacher.fullName}}</td><!-- піб -->
+      <td>{{teacher.education}}</td><!-- освіта -->
+      <td>{{teacher.category}} {{teacher.year}}</td><!-- посада  -->
+      <td>{{teacher.grade}}</td><!-- розряд -->
+      <td>{{teacher.price}}</td><!-- ставка -->
+      <td>{{teacher.pedagogicalTitle}}</td><!-- пед звання -->
+      <td>{{teacher.increase}}</td><!-- підвщення -->
+      <td>{{teacher.mounthTarif}}</td><!-- міс тар + підвищ -->
+      <td>{{teacher.experience}}</td><!-- стаж -->
+      <td>{{teacher.experiencePercent}}</td><!-- % -->
+      <td>{{teacher.premium}}</td><!-- надбавка -->
+      <td>{{teacher.twentyPersent}}</td><!-- 20% -->
+      <td>{{teacher.mounthTarifTotal}}</td><!-- міс тар тотал -->
+    </tr>
+  </tbody>
+</table>
+<!-- <div class="">
+    {{teachersList | json}}
+</div> -->

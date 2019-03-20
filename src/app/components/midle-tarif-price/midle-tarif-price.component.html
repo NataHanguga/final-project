@@ -1,0 +1,53 @@
+<div class="headerTitle">
+    <h3>Middle Tarif Price List</h3>
+  </div>
+<table mdbTable small="true">
+  <thead class="d-flex-box p-2 col-example black white-text">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Прізвище, ім'я та по батькові</th>
+      <th colspan="3">Тижневе навантаження</th>
+      <th scope="col">Обсяг педагогічного<br> навантаження <br>(фактична кількість<br> педагогічних годн)</th>
+      <th scope="col">Тарифна ставка з<br> урахуваням підвищень</th>
+      <th scope="col">Зарплата</th>
+      <th scope="col">20%</th>
+      <th scope="col">Всього</th>
+    </tr>
+    <tr class="d-flex-box flex-column p-2 col-example">
+      <th colspan="2"></th>
+      <th scope="col">викл</th>
+      <th scope="col">конц</th>
+      <th scope="col">Разом</th>
+      <th colspan="5"></th>
+    </tr>
+    <tr class="white black-text">
+        <th *ngFor="let num of headerNumbers" scope="col">{{num}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let teacher of teachersList;let sum of summList; let i = index">
+      <th scope="row">{{i+1}}</th> <!-- # -->
+      <td>{{teacher.fullName}}</td><!-- піб -->
+      <td>{{teacher.teachHours}}</td><!-- викл -->
+      <td>{{teacher.concertmasterHours}}</td><!-- конц  -->
+      <td>{{teacher.loadTotal}}</td><!-- години разом -->
+      <td>{{teacher.loadVolume}}</td><!-- навантаження -->
+      <td>{{teacher.salary}}</td><!-- тар ставка + підвищ -->
+      <td>{{teacher.total}}</td><!-- зп -->
+      <td>{{teacher.twentyPersent2}}</td><!-- 20%2 -->
+      <td>{{teacher.inAll}}</td><!-- тотал -->
+    </tr>
+      <tr>
+          <td colspan="2"><h6>Всього</h6></td>
+          <td >{{summList[0]}}</td>
+          <td >{{summList[1]}}</td>
+          <td >{{summList[2]}}</td>
+          <td >{{summList[3]}}</td>
+          <td >{{summList[4]}}</td>
+          <td >{{summList[5]}}</td>
+          <td >{{summList[6]}}</td>
+          <td >{{summList[7]}}</td>
+        </tr>
+  </tbody>
+</table>
+
