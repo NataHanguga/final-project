@@ -1,0 +1,39 @@
+<div class="headerTitle">
+  <h3>Registration</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" formControlName="name" class="form-control" name="name" [ngClass]="{ 'is-invalid': f.submitted && name.invalid }" required />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" class="form-control" name="password" [ngClass]="{ 'is-invalid': f.submitted && password.invalid }" required minlength="5" />
+          <div *ngIf="f.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors.required">Password is required</div>
+            <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" formControlName="confirmPassword" class="form-control" name="confirmPassword" [ngClass]="{ 'is-invalid': f.submitted && confirmPassword.invalid }" required minlength="5" />
+          <div *ngIf="f.submitted && confirmPassword.invalid" class="invalid-feedback">
+            <div *ngIf="confirmPassword.errors.required">confirmPassword is required</div>
+            <div *ngIf="confirmPassword.errors.minlength">confirmPassword must be at least 6 characters</div>
+            <div *ngIf="confirmPassword.value!==password.value">confirmPassword dont eqals password</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

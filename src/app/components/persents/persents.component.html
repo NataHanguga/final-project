@@ -1,0 +1,140 @@
+<div class="mb-1 headerTitle">
+  <h4>Persents</h4>
+</div>
+
+<div class="container">
+  <button class="btn click" id="modalActivate" data-toggle="modal" data-target="#addCardModal">Add</button>
+</div>
+
+
+<div class="list-group" *ngFor="let percent of percentList">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex justify-content-around" >
+      <h5 class="w-50">{{percent.learningPosition}}</h5>
+      <div class="d-flex w-100 justify-content-end">
+        <input class="btn btn-warning" type="button" (click)="editPercentData(percent._id)" id="modalActivate" data-toggle="modal" data-target="#editCardModal" value="Edit">
+        <input class="btn btn-danger" type="button" (click)="deletePercents(percent._id)" value="Delete">
+
+    </div>
+    </div>
+    <p class="">persents, % {{percent.percent}}</p>
+  </a>
+</div>
+
+
+<!-- edit model -->
+<div class="modal fade" id="editCardModal" tabindex="-1" role="dialog" aria-labelledby="editCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title form-title" id="editCardModalLabel">
+           Edit Percent
+          </h4>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+
+          <form class="form-horizontal" role="form" [formGroup]="percentItem" (ngSubmit)="add()">
+            <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+              <input type="text" id="learningPosition"
+                                placeholder="Learning Position"
+                                formControlName="learningPosition"
+                                class="form-control input100"
+                                [ngClass]="{ 'is-invalid': submitted && f.learningPosition.errors }" />
+              <div *ngIf="submitted && f.learningPosition.errors" class="invalid-feedback">
+                <div *ngIf="f.learningPosition.errors.required">learning Position is required</div>
+              </div>
+            </div>
+            <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+              <input type="percent" id="percent"
+                                formControlName="percent"
+                                placeholder="percent"
+                                class="form-control input100 percent"
+                                [ngClass]="{ 'is-invalid': submitted && f.percent.errors }" />
+              <div *ngIf="submitted && f.percent.errors" class="invalid-feedback">
+                <div *ngIf="f.percent.errors.required">percent is required</div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <div class="form-group container-login-form">
+            <button class="btn login-form click"
+                    data-dismiss="modal"
+                    class="btn click" 
+                    (click)='changePercentData(this.id)'>Edit</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- add modal -->
+
+  <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="addCardModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                         <span aria-hidden="true">&times;</span>
+                         <span class="sr-only">Close</span>
+                  </button>
+            <h4 class="modal-title form-title" id="addCardModalLabel">
+             Add New Percent Task
+            </h4>
+          </div>
+  
+          <!-- Modal Body -->
+          <div class="modal-body">
+  
+            <form class="form-horizontal" role="form" [formGroup]="percentItem" (ngSubmit)="addPercentData()">
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                <input type="text" id="learningPosition"
+                                  placeholder="Learning Position"
+                                  formControlName="learningPosition"
+                                  class="form-control input100"
+                                  [ngClass]="{ 'is-invalid': submitted && f.learningPosition.errors }" />
+                <div *ngIf="submitted && f.learningPosition.errors" class="invalid-feedback">
+                  <div *ngIf="f.learningPosition.errors.required">learning Position is required</div>
+                </div>
+              </div>
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                <input type="text" id="percent" digitOnly pattern="\d*"
+                                  formControlName="percent"
+                                  placeholder="percent"
+                                  class="form-control input100 percent"
+                                  minlength="1" maxlength="3" 
+                                  [ngClass]="{ 'is-invalid': submitted && f.percent.errors }"/>
+                <div *ngIf="submitted && f.percent.errors" class="invalid-feedback">
+                  <div *ngIf="f.percent.errors.required">Percent is required</div>
+                  <div>Percent should have more then 0digit</div>
+                </div>
+              </div>
+            </form>
+          </div>
+  
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <div class="form-group container-login-form">
+              <button class="btn login-form click"
+                      data-dismiss="modal"
+                      class="btn click" 
+                      (click)='addPercentData()'>Add</button>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  

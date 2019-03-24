@@ -1,0 +1,182 @@
+<div class="mb-1 headerTitle">
+  <h4>Properties</h4>
+</div>
+
+<div class="container">
+  <button class="btn click" id="modalActivate" data-toggle="modal" data-target="#addCardModal">Add</button>
+</div>
+
+
+<div class="list-group" *ngFor="let item of propList">
+  <a class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex justify-content-around" >
+      <h5 class="w-100">{{item.position}}</h5>
+      <p class="w-50">price: {{item.price}}</p>
+      <p class="w-50">level: {{item.level}}</p>
+
+      <div class="d-flex w-100 justify-content-end">
+        <input class="btn btn-warning" type="button" (click)="editPropData(item._id)" id="modalActivate" data-toggle="modal" data-target="#editCardModal" value="Edit">
+        <input class="btn btn-danger" type="button" (click)="deletePropData(item._id)" value="Delete">
+
+    </div>
+    </div>
+  </a>
+</div> 
+<!-- {{propList | json}} -->
+
+
+
+<!-- edit model -->
+<div class="modal fade" id="editCardModal" tabindex="-1" role="dialog" aria-labelledby="editCardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+                       <span aria-hidden="true">&times;</span>
+                       <span class="sr-only">Close</span>
+                </button>
+          <h4 class="modal-title form-title" id="editCardModalLabel">
+           Edit Property
+          </h4>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="modal-body">
+
+          <form class="form-horizontal" role="form" [formGroup]="propItem" (ngSubmit)="add()">
+            <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+              <input type="text" id="position"
+                                placeholder="Learning Position"
+                                formControlName="position"
+                                class="form-control input100"
+                                [ngClass]="{ 'is-invalid': submitted && f.position.errors }" />
+              <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                <div *ngIf="f.position.errors.required">learning Position is required</div>
+              </div>
+            </div>
+            <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+              <input type="price" id="price"
+                                formControlName="price"
+                                placeholder="price"
+                                class="form-control input100 price"
+                                [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+              <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                <div *ngIf="f.price.errors.required">price is required</div>
+              </div>
+            </div>
+            <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                <input type="level" id="level"
+                                  formControlName="level"
+                                  placeholder="level"
+                                  class="form-control input100 level"
+                                  [ngClass]="{ 'is-invalid': submitted && f.level.errors }" />
+                <div *ngIf="submitted && f.level.errors" class="invalid-feedback">
+                  <div *ngIf="f.level.errors.required">level is required</div>
+                </div>
+              </div>
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                  <input type="percent" id="staffUnitsAmounts"
+                                    formControlName="staffUnitsAmounts"
+                                    placeholder="staffUnitsAmounts"
+                                    class="form-control input100 staffUnitsAmounts"
+                                    [ngClass]="{ 'is-invalid': submitted && f.staffUnitsAmounts.errors }" />
+                  <div *ngIf="submitted && f.staffUnitsAmounts.errors" class="invalid-feedback">
+                    <div *ngIf="f.staffUnitsAmounts.errors.required">staffUnitsAmounts is required</div>
+                  </div>
+                </div>
+          </form>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="modal-footer">
+          <div class="form-group container-login-form">
+            <button class="btn login-form click"
+                    data-dismiss="modal"
+                    class="btn click" 
+                    (click)='changePropData()'>Edit</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+  <!-- add modal -->
+
+  <div class="modal fade" id="addCardModal" tabindex="-1" role="dialog" aria-labelledby="addCardModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+                         <span aria-hidden="true">&times;</span>
+                         <span class="sr-only">Close</span>
+                  </button>
+            <h4 class="modal-title form-title" id="addCardModalLabel">
+             Add New Property Task
+            </h4>
+          </div>
+  
+          <!-- Modal Body -->
+          <div class="modal-body">
+  
+            <form class="form-horizontal" role="form" [formGroup]="propItem" (ngSubmit)="add()">
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                <input type="text" id="position"
+                                  placeholder="Learning Position"
+                                  formControlName="position"
+                                  class="form-control input100"
+                                  [ngClass]="{ 'is-invalid': submitted && f.position.errors }" />
+                <div *ngIf="submitted && f.position.errors" class="invalid-feedback">
+                  <div *ngIf="f.position.errors.required">learning Position is required</div>
+                </div>
+              </div>
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                <input type="text" id="level"
+                                  formControlName="level"
+                                  placeholder="level"
+                                  class="form-control input100 level"
+                                  [ngClass]="{ 'is-invalid': submitted && f.level.errors }" />
+                <div *ngIf="submitted && f.level.errors" class="invalid-feedback">
+                  <div *ngIf="f.level.errors.required">level is required</div>
+                </div>
+              </div>
+              <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                  <input type="text" id="price"
+                                    formControlName="price"
+                                    placeholder="price"
+                                    class="form-control input100 price"
+                                    [ngClass]="{ 'is-invalid': submitted && f.price.errors }" />
+                  <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                    <div *ngIf="f.price.errors.required">price is required</div>
+                  </div>
+                </div>
+                <div class="form-group wrap-input100  rs1-wrap-input100 validate-input">
+                    <input type="staffUnitsAmounts" id="staffUnitsAmounts"
+                                      formControlName="staffUnitsAmounts"
+                                      placeholder="staffUnitsAmounts"
+                                      class="form-control input100 staffUnitsAmounts"
+                                      [ngClass]="{ 'is-invalid': submitted && f.staffUnitsAmounts.errors }" />
+                    <div *ngIf="submitted && f.staffUnitsAmounts.errors" class="invalid-feedback">
+                      <div *ngIf="f.staffUnitsAmounts.errors.required">staffUnitsAmounts is required</div>
+                    </div>
+                  </div>
+            </form>
+          </div>
+  
+          <!-- Modal Footer -->
+          <div class="modal-footer">
+            <div class="form-group container-login-form">
+              <button class="btn login-form click"
+                      data-dismiss="modal"
+                      class="btn click" 
+                      (click)='addPropData()'>Add</button>
+  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
