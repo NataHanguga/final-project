@@ -1,0 +1,30 @@
+{
+  "name": "homework-9",
+  "version": "1.0.0",
+  "description": "server for todoList",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NataHanguga/homework9.git"
+  },
+  "author": "Nata Hanguga",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NataHanguga/homework9/issues"
+  },
+  "homepage": "https://github.com/NataHanguga/homework9#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "docx": "^4.7.1",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.4.19",
+    "node-webcam": "^0.4.6",
+    "shortid": "^2.2.14"
+  }
+}
