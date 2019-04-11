@@ -1,0 +1,97 @@
+<div class="headerTitle">
+  <h3>Registration</h3>
+</div>
+<!-- name, surname, phoneNumber, email, confirmPassword -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- name -->
+          <div class="md-form">
+              <label for="name" data-error="wrong" data-success="right">Name</label>
+              <div class="error" id="error"></div>
+              <input type="text" 
+                      mdbValidate mdbInput
+                      id="name"
+                      formControlName="name" 
+                      class="form-control" 
+                      [pattern]="'[A-Za-z0-9]*'"
+                      required />
+              <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)">Name invalid</mdb-error>
+              <mdb-success *ngIf="name.valid && (name.dirty || name.touched)">Name valid</mdb-success>
+            </div>
+            <!-- surname -->
+            <div class="md-form">
+                <label for="surname" data-error="wrong" data-success="right">Surname</label>
+                <input type="text" 
+                        mdbValidate mdbInput
+                        id="surname"
+                        formControlName="surname" 
+                        class="form-control" 
+                        [pattern]="'[A-Za-z0-9]*'"
+                        required />
+                <mdb-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">Surname invalid</mdb-error>
+                <mdb-success *ngIf="surname.valid && (surname.dirty || surname.touched)">Surname valid</mdb-success>
+              </div>
+          <!-- phoneNumber -->
+          <div class="md-form">
+              <label for="phoneNumber" data-error="wrong" data-success="right">Phone Number (XXX-XXX-XXXX)</label>
+              <input type="text" 
+                      mdbValidate mdbInput
+                      id="phoneNumber"
+                      formControlName="phoneNumber" 
+                      class="form-control" 
+                      pattern="^\d{3}-\d{3}-\d{4}$"
+                      required />
+              <mdb-error *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)">Phone Number invalid</mdb-error>
+              <mdb-success *ngIf="phoneNumber.valid && (phoneNumber.dirty || phoneNumber.touched)">Phone Number valid</mdb-success>
+            </div>
+          <!-- email -->
+          <div class="md-form">
+              <label for="email" data-error="wrong" data-success="right">Email</label>
+              <input type="text" 
+                      mdbValidate mdbInput
+                      id="email"
+                      formControlName="email" 
+                      class="form-control" 
+                      pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                      required />
+              <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">Email invalid</mdb-error>
+              <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Email valid</mdb-success>
+            </div>
+        <!-- password -->
+        <div class="md-form">
+            <label for="password" data-error="wrong" data-success="right">Password</label>
+            <input type="text"
+                    id="password" 
+                    mdbValidate mdbInput
+                    formControlName="password" 
+                    class="form-control" 
+                    minlength="5"
+                    pattern="[A-Za-z0-9]*"
+                    required />
+            <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Password invalid</mdb-error>
+            <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">Password valid</mdb-success>
+          </div>
+          <!-- confirmPassword -->
+          <div class="md-form">
+              <label for="confirmPassword" data-error="wrong" data-success="right">Confirm Password</label>
+              <input type="text"
+                      id="confirmPassword" 
+                      mdbValidate mdbInput
+                      formControlName="confirmPassword" 
+                      class="form-control" 
+                      minlength="5"
+                      required />
+              <mdb-error *ngIf="confirmPassword.value !== password.value">Confirm Password not equal Password</mdb-error>
+              <mdb-error *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">Confirm Password invalid</mdb-error>
+              <mdb-success *ngIf="confirmPassword.valid && (confirmPassword.dirty || confirmPassword.touched)">Confirm Password valid</mdb-success>
+            </div>
+        <div class="form-group">
+          <button class="btn btn-primary" >Register</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="headerContainer d-flex justify-content-between align-items-center header-wrapper">
+  <div class="headerTitle">
+    <p class="welcome-title">Welcome to admin Page</p>
+  </div>
+  <div class="buttons d-flex flex-row justify-content-around configurations-wrapper">
+    <div data-toggle="modal" data-target="#settingModalHorizontal" class="settings">Setting<i class="fas fa-cog"></i></div>
+    <div class="logOut" (click)="logOut()">Log Out</div>
+  </div>
+</div>
+
+
+<div class="modal fade right" id="settingModalHorizontal" tabindex="-1" role="dialog"
+  aria-labelledby="settingModalHorisontalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-full-height modal-right" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title form-title" id="settingModalLabel">Setting</h4>
+        <button type="button" class="close" data-dismiss="modal">
+               <span aria-hidden="true">&times;</span>
+               <span class="sr-only">Close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-setting></app-setting>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <ul class="nav nav-pills flex-column" aria-orientation="vertical">
+    <li class="nav-item active">
+      <a class="nav-link" data-toggle="pill" href="#teachers" (click)="showContent('appTeacher')">Teacher List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#tarifList" (click)="showContent('tariffList')">Tarif List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#middleTarifList" (click)="showContent('middleTariffList')">Middle Tarif Price</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#managerTarifList" (click)="showContent('managerTariffList')">Manager Tariff List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#summaryDataList" (click)="showContent('summaryDataList')">Summary Data List</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="pill" href="#repaireList" (click)="showContent('repaireList')">Repaire List</a>
+    </li>
+  </ul>
+
+  <div class="tab-content col-12">
+    <div id="teachers" class="tab-pane active" role="tabpanel" aria-labelledby="teachers">
+      <app-teachers *ngIf="activePage === 'appTeacher'"></app-teachers>
+    </div>
+    <div id="tarifList" class="tab-pane fade" role="tabpanel" aria-labelledby="tarifList">
+      <app-tarif-list *ngIf="activePage === 'tariffList'"></app-tarif-list>
+    </div>
+    <div id="middleTarifList" class="tab-pane fade" role="tabpanel" aria-labelledby="middleTarifList">
+      <app-midle-tarif-price *ngIf="activePage === 'middleTariffList'"></app-midle-tarif-price>
+    </div>
+    <div id="managerTarifList" class="tab-pane fade" aria-labelledby="managerTarifList">
+      <app-manager-tarif *ngIf="activePage === 'managerTariffList'"></app-manager-tarif>
+    </div>
+    <div id="summaryDataList" class="tab-pane fade" aria-labelledby="summaryDataList">
+      <app-summary-data-list *ngIf="activePage === 'summaryDataList'"></app-summary-data-list>
+    </div>
+    <div id="repaireList" class="tab-pane fade" aria-labelledby="repaireList">
+      <app-repaire-list *ngIf="activePage === 'repaireList'"></app-repaire-list>
+    </div>
+  </div>
+</div>

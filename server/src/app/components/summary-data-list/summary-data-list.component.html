@@ -1,0 +1,52 @@
+<div class="headerTitle">
+  <h3>Summary Data List</h3>
+</div>
+
+<div class="container" id="container">
+    <label for="filename">DownloadFile</label>
+      <input type="text" name="fileName" id="fileName" placeholder="Add file name" (change)="getFileName()">
+      <button type="submit"> Click for download file </button>
+    </div>
+
+
+<table mdbTable small="true">
+<thead class="d-flex-box p-2 col-example black white-text">
+  <tr >
+    <th score="col" *ngFor="let header of headerList">{{header}}</th>
+  </tr>
+</thead>
+<tbody>
+  <tr mdbTableCol *ngFor="let prop of propList; let i = index;">
+    <th scope="row">{{i+1}}</th> <!-- # -->
+    <td>{{prop.position}}</td>
+    <td>{{prop.staffUnitsAmounts}}</td>
+    <td>{{prop.level}}</td>
+    <td>{{prop.price}}</td>
+    <td>{{prop.serviceYears}}</td>
+    <td>{{prop.addPrice}}</td>
+    <td>{{prop.twentyPercents}}</td>
+    <td>{{prop.priceFondByMounth}}</td>
+    <td>{{prop.priceFondByYear}}</td>
+    <td>{{prop.serviceYears}}</td>
+    <td>{{prop.serviceYears}}</td>
+    <td>{{prop.summ}}</td>
+  </tr>
+    <tr >
+        <td scope="row">Всього</td>
+        <td *ngFor="let sum of summPropList">{{sum}}</td>
+    </tr>
+    <tr>
+      <td>Фонд матеріального заохочення (3%)</td>
+      <td *ngFor="let fond of summMaterPrice">{{fond}}</td>
+    </tr>
+    <tr>
+      <td>Охорона праці (0,2%)</td>
+      <td *ngFor="let secure of workSecure">{{secure}}</td>
+    </tr>
+    <tr>
+      <td colspan="12">Всього фонд оплати праці за рік</td>
+      <td>{{total}}</td>
+    </tr>
+</tbody>
+</table>
+
