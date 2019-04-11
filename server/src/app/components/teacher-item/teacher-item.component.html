@@ -1,0 +1,20 @@
+<div>
+FullName: {{teacherItem.fullName}}<br>
+ Education Level: {{teacherItem.education}}<br>
+ Category: {{teacherItem.category}}<br>
+ Year: {{teacherItem.year}}<br>
+ Grade: {{teacherItem.grade}}<br>
+ PedagogicalTitle: {{teacherItem.pedagogicalTitle}}<br>
+ Experience: {{teacherItem.experience}}<br>
+ TeachHours: {{teacherItem.teachHours}}<br>
+ ConcertmasterHours: {{teacherItem.concertmasterHours}}<br>
+</div>
+
+<div>
+  <input type="text" id="fullName">
+</div>
+
+<!-- id="modalActivate" data-toggle="modal" data-target="#editCardModal" -->
+<button value="edit" click="editTeacherData()">Edit</button>
+<button [routerLink]="['/teachers']" routerLinkActive="router-link-active" >back</button>
+

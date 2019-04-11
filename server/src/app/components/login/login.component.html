@@ -1,0 +1,39 @@
+<div class="headerTitle">
+  <h3>Login</h3>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="md-form">
+          <label for="name" data-error="wrong" data-success="right">Name</label>
+          <div class="error" id="error"></div>
+          <input type="text" 
+                  mdbValidate mdbInput
+                  formControlName="name" 
+                  class="form-control" 
+                  [pattern]="'[A-Za-z0-9]*'"
+                  required />
+          <mdb-error *ngIf="name.invalid && (name.dirty || name.touched)">Name invalid</mdb-error>
+          <mdb-success *ngIf="name.valid && (name.dirty || name.touched)">Name valid</mdb-success>
+        </div>
+        <div class="md-form">
+          <label for="password" data-error="wrong" data-success="right">Password</label>
+          <input type="password" mdbValidate mdbInput
+                  formControlName="password" 
+                  class="form-control" 
+                  required 
+                  [pattern]="'[A-Za-z0-9]*'"
+                  minlength="5" />
+          <mdb-error *ngIf="password.invalid && (password.dirty || password.touched)">Password invalid</mdb-error>
+          <mdb-success *ngIf="password.valid && (password.dirty || password.touched)">Password valid</mdb-success>
+        
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
