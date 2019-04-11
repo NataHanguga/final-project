@@ -14,8 +14,7 @@ import {
 
 @Component({
   selector: 'app-persents',
-  templateUrl: './persents.component.html',
-  styleUrls: ['./persents.component.css']
+  templateUrl: './persents.component.html'
 })
 export class PersentsComponent implements OnInit {
 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit, Output} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -7,10 +7,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
+  public activePage = 'appTeacher';
 
-  constructor(private route: Router) { }
+  constructor(private route: Router) {
+  }
 
   ngOnInit() {
+  }
+
+  showContent(value) {
+    this.activePage = value;
   }
 
   logOut() {

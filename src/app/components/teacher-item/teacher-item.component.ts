@@ -20,8 +20,7 @@ import {
 
 @Component({
   selector: 'app-teacher-item',
-  templateUrl: './teacher-item.component.html',
-  styleUrls: ['./teacher-item.component.scss']
+  templateUrl: './teacher-item.component.html'
 })
 export class TeacherItemComponent implements OnInit {
 

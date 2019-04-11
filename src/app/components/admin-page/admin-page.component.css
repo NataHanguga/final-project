@@ -42,3 +42,44 @@ a{
   /* margin-top: 50px; */
   /* margin-right: 20px; */
 }
+
+.welcome-title {
+  font-size: 20px;
+  color: white;
+  padding-left: 20px;
+}
+
+.header-wrapper {
+  background: lightgrey;
+  position: fixed;
+  width: 100%;
+  height: 60px;
+}
+
+.container {
+  position: relative;
+  top: 60px;
+}
+
+.configurations-wrapper {
+
+}
+
+.logOut {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.logOut:hover {
+  cursor: pointer;
+}
+
+.settings {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings:hover {
+  cursor: pointer;
+}
