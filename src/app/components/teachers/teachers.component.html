@@ -21,7 +21,6 @@
       </div>
     </li>
   </ul>
-<!-- (click)="deleteTeacherData(teacher._id)" -->
   <!-- show modal window -->
 
   <div class="modal fade top" id="showModalHorizontal" tabindex="-1" role="dialog"
@@ -35,7 +34,7 @@
           <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
                 <span class="sr-only">Close</span>
-         </button>
+          </button>
         </div>
         <div class="profileContainer d-flex flex-row align-items-center">
           <div class="profilePhoto"></div>
@@ -113,7 +112,7 @@
                       formControlName="category"
                       (change)="selectItem($event)"
                       mdbValidate required >
-                  <option *ngFor="let grade of gradeList" [value]=grade.position>
+                  <option *ngFor="let grade of categoryList" [value]=grade.position>
                   {{grade.position}}
                   </option>
               </select>
@@ -140,8 +139,8 @@
                       class="form-control"
                       (change)="selectItem($event)"
                       mdbValidate required >
-                  <option *ngFor="let grade of gradeList" [value]=grade.level>
-                  {{grade.level}}
+                  <option *ngFor="let grade of gradeList" [value]=grade>
+                  {{grade}}
                   </option>
               </select>
               <mdb-error *ngIf="grade.value === null || grade.value.length === 0">Grade invalid</mdb-error>
@@ -417,6 +416,7 @@
       <div class="modal-footer justify-content-center">
         <a (click)="deleteTeacherData()" 
             mdbBtn 
+            id=""
             color="danger" 
             outline="true" 
             data-dismiss="modal" 

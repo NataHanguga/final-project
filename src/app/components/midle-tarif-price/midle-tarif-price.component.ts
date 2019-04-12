@@ -5,7 +5,7 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 @Component({
   selector: 'app-midle-tarif-price',
   templateUrl: './midle-tarif-price.component.html',
-  styleUrls: ['./midle-tarif-price.component.scss']
+  styleUrls: ['./midle-tarif-price.component.css']
 })
 export class MidleTarifPriceComponent implements OnInit {
 

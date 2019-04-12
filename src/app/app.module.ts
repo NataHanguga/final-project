@@ -7,7 +7,6 @@ import { PersentsComponent } from './components/persents/persents.component';
 import { PersentsService } from './services/persents.service';
 import { HttpClientModule } from '@angular/common/http';
 import { TeachersComponent } from './components/teachers/teachers.component';
-import { TeacherItemComponent } from './components/teacher-item/teacher-item.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { TarifListComponent } from './components/tarif-list/tarif-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -23,13 +22,14 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { AdminPageComponent } from './components/admin-page/admin-page.component';
 import { CookieService } from 'ngx-cookie-service';
+import { LandingComponent } from './components/landing/landing.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersentsComponent,
     TeachersComponent,
-    TeacherItemComponent,
     TarifListComponent,
     NavbarComponent,
     MidleTarifPriceComponent,
@@ -41,7 +41,9 @@ import { CookieService } from 'ngx-cookie-service';
     PropertyComponent,
     LoginComponent,
     RegistrationComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    LandingComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,

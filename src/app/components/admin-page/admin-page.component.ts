@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-page',
@@ -7,21 +7,24 @@ import {Router} from '@angular/router';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  public activePage = 'appTeacher';
 
-  constructor(private route: Router) {
-  }
+  constructor(private route: Router) { }
 
   ngOnInit() {
-  }
+    $(document).ready( () => {
 
-  showContent(value) {
-    this.activePage = value;
+      $('#sidebarCollapse').on('click', () => {
+        $('#sidebar').toggleClass('active');
+      });
+    });
   }
 
   logOut() {
-    localStorage.setItem('logIn', 'true');
+    localStorage.setItem('logIn', 'false');
     this.route.navigate(['/']);
   }
 
+  loadPage(name) {
+    this.route.navigate([name]);
+  }
 }
