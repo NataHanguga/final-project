@@ -8,12 +8,12 @@
         <button type="submit"> Click for download file  </button>
   </div>
 
-<table mdbTable small="true">
-  <thead class="black white-text">
+<table mdbTable small="true" class="table table-dark ">
+  <thead class="table100-head">
     <tr>
       <th *ngFor="let head of headerElements; let i = index" scope="col">{{head}} </th>
     </tr>
-    <tr class="white black-text">
+    <tr class="">
         <th *ngFor="let num of headerNumbers" scope="col">{{num}}</th>
     </tr>
   </thead>

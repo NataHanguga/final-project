@@ -44,7 +44,6 @@ div[class*=box] {
 }
 .btn-add:hover { 
   animation: wobbleud 0.5s linear infinite;
-  cursor: pointer;
 }
 
 .bnt-delete{

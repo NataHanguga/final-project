@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-property',
-  templateUrl: './property.component.html'
+  templateUrl: './property.component.html',
+  styleUrls: ['./property.component.css']
 })
 export class PropertyComponent implements OnInit {
 

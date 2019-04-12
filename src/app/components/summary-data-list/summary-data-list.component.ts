@@ -4,7 +4,8 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 
 @Component({
   selector: 'app-summary-data-list',
-  templateUrl: './summary-data-list.component.html'
+  templateUrl: './summary-data-list.component.html',
+  styleUrls: ['./summary-data-list.component.css']
 })
 export class SummaryDataListComponent implements OnInit {
 
