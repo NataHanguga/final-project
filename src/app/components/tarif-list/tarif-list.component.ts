@@ -10,20 +10,23 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 @Component({
   selector: 'app-tarif-list',
   templateUrl: './tarif-list.component.html',
-  styleUrls: ['./tarif-list.component.css']
+  styleUrls: ['./tarif-list.component.scss']
 })
 export class TarifListComponent implements OnInit {
 
   headerNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
   teachersList = [];
   total: number;
-  headerElements = ['№', 'Прізвище, ім*я та по батькові',
-    'Освіта', 'Посада, рік', 'Розряд', 'Тарифна ставка',
-    'Педагогічне звання', 'Розмір підвищень',
-    'Місячний тариф з урахуванням підвищень',
-    'Стаж роботи', '%', 'Розмір Надбавки за вислугу років',
-    '20%', 'Місячний тариф з урахуванням підвищень'
-  ];
+  headerElements = ['#', 'Full Name', 'Education', 'Category, year', 'Grade',
+                    'Price', 'Pedagogical Title', 'Add salary', 'Mounth tarif + add salary',
+                  'Experience', '%', 'Add salary by experience', '20%', 'Mounth total'];
+  // ['№', 'Прізвище, ім*я та по батькові',
+  //   'Освіта', 'Посада, рік', 'Розряд', 'Тарифна ставка',
+  //   'Педагогічне звання', 'Розмір підвищень',
+  //   'Місячний тариф з урахуванням підвищень',
+  //   'Стаж роботи', '%', 'Розмір Надбавки за вислугу років',
+  //   '20%', 'Місячний тариф з урахуванням підвищень'
+  // ];
 
   constructor(private teachers: TeachersService,
               private saveDocs: SaveDocumentsService) {}
@@ -51,7 +54,7 @@ export class TarifListComponent implements OnInit {
   public getFileName() {
     const input = document.getElementById('fileName') as HTMLInputElement;
     console.log(input.value);
-    this.saveDocs.saveDocTarifList( {fileName : input.value}).subscribe(
+    this.saveDocs.saveDocTarifList({fileName : input.value}).subscribe(
       res => {
         console.log(res);
         window.alert('File saved to Downloads');

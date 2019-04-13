@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       name: ['', Validators.required],
-      password: ['', [Validators.required, Validators.minLength(5)]]
+      password: ['', [Validators.required]]
   });
   }
 
@@ -33,9 +33,9 @@ export class LoginComponent implements OnInit {
         console.log(this.loginForm.value);
         const message = document.getElementById('error');
         message.style.display = 'none';
-        // if (this.loginForm.value.name !== 'q' && this.loginForm.value.password !== 11111) {
-        //   this.route.navigate(['/']);
-        // } else {
+        if (this.loginForm.value.name !== 'q' && this.loginForm.value.password !== 11111) {
+          this.route.navigate(['/error']);
+        } else {
         this.auth.postLogin(this.loginForm.value)
             .subscribe(res => {
                 message.style.display = 'none';
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
                     console.log(err.status, 'Autification failed. Check the request');
                   }
                 });
-              // }
+              }
         // stop here if form is invalid
         if (this.loginForm.invalid) {
             return;

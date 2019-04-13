@@ -1,35 +1,42 @@
-<div class="headerTitle">
-  <h3>Prepaire Worker List</h3>
-</div>
-
-<div class="container" id="container">
-  <label for="filename">DownloadFile</label>
-    <input type="text" name="fileName" id="fileName" placeholder="Add file name" (change)="getFileName()">
-    <button type="submit"> Click for download file </button>
+<div class="wrapper d-flex flex-row justify-content-between align-items-center">
+  <div class="headerTitle">
+    <h3>Prepaire Worker List</h3>
   </div>
 
-<table mdbTable small="true">
-<thead class="d-flex-box p-2 col-example black white-text">
-  <tr >
-    <th score="col" *ngFor="let header of headerList">{{header}}</th>
-  </tr>
-</thead>
-<tbody>
-  <tr mdbTableCol *ngFor="let prop of propList; let i = index;">
-    <th scope="row">{{i+1}}</th> <!-- # -->
-    <td>{{prop.position}}</td>
-    <td>{{prop.staffUnitsAmounts}}</td>
-    <td>{{prop.level}}</td>
-    <td>{{prop.price}}</td>
-    <td>{{prop.priceFondByMounth}}</td>
-    <td>{{prop.priceFondByYear}}</td>
-  </tr>
+  <div class="container md-form align-items-end" id="container">
+      <input type="text"
+                  name="fileName"
+                  id="fileName"
+                  (change)="getFileName()"
+                  mdbInput mdbValidate
+                  [pattern]="'[A-Za-z .-]*'"
+                  required />
+      <label for="filename">Input File Name</label>
+      <button type="submit" class="btn "><i class="fas fa-save"></i>Download</button>
+    </div>
+</div>
 
-</tbody>
+<table mdbTable small="true">
+  <thead class="d-flex-box p-2 col-example">
+    <tr>
+      <th score="col" *ngFor="let header of headerList">{{header}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr mdbTableCol *ngFor="let prop of propList; let i = index;">
+      <th scope="row">{{i+1}}</th> <!-- # -->
+      <td>{{prop.position}}</td>
+      <td>{{prop.staffUnitsAmounts}}</td>
+      <td>{{prop.level}}</td>
+      <td>{{prop.price}}</td>
+      <td>{{prop.priceFondByMounth}}</td>
+      <td>{{prop.priceFondByYear}}</td>
+    </tr>
+
+  </tbody>
 </table>
 
 
 
 
 <!-- <a download href="" id="save" click="saveDocInComputer()">save</a> -->
-

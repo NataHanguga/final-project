@@ -9,9 +9,10 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 })
 export class RepaireListComponent implements OnInit {
 
-  headerList = ['#', 'Посада', 'Кількість штатних одиниць',
-                'Розряд', 'Посадовий оклад',
-                'Фонд зарплати за місяць', 'Фонд зарплати на рік'];
+  headerList = ['#', 'Position', 'Staff Amounts', 'Grade', 'Salary', 'Mounth salary fund', 'Year salary found'];
+  // ['#', 'Посада', 'Кількість штатних одиниць',
+  //               'Розряд', 'Посадовий оклад',
+  //               'Фонд зарплати за місяць', 'Фонд зарплати на рік'];
   propList = [];
 
   constructor(private prop: GradeService, private saveDoc: SaveDocumentsService) { }

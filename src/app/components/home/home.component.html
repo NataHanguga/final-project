@@ -1,0 +1,41 @@
+<div class="wrapper">
+<h3 class="containerHeader header d-flex justify-content-between align-items-center">Home</h3>
+<div class="container ">
+  <div class="containerChart">
+    <div class="chartRound">
+    <div class="chartLabel">Data</div>
+    <div class="alignVertical d-flex flex-row">
+      <canvas mdbChart [chartType]="chartType" [datasets]="chartDatasets" [labels]="chartLabels" [colors]="chartColors"
+        [options]="chartOptions" [legend]="false" (chartHover)="chartHovered($event)"
+        (chartClick)="chartClicked($event)">
+      </canvas>
+      <ul>
+        <li>Websites</li>
+        <li>Logo</li>
+        <li>Social Media</li>
+        <li>Adwords</li>
+        <li>E-Comerce</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+  <div class="containerChart">
+    <div class="chartLine">
+    <div class="chartLabel">Teachers</div>
+        <canvas mdbChart
+            [chartType]="chartType1"
+            [datasets]="chartDatasets"
+            [labels]="chartLabels"
+            [colors]="chartColors1"
+            [options]="chartOptions"
+            [legend]="false"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)">
+        </canvas>
+    </div>
+  </div>
+</div>
+<div class="text chartLabel text-center">
+    Next content can see only wizard.
+</div>
+</div>

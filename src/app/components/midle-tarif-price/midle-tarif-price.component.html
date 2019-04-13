@@ -1,31 +1,38 @@
+<div class="wrapper d-flex flex-row justify-content-between align-items-center">
 <div class="headerTitle">
     <h3>Middle Tarif Price List</h3>
   </div>
 
-  <div class="container" id="container">
-      <label for="filename">DownloadFile</label>
-        <input type="text" name="fileName" id="fileName" placeholder="Add file name" (change)="getFileName()">
-        <button type="submit"> Click for download file  </button>
-  </div>
+  <div class="container md-form align-items-end" id="container">
+      <input type="text"
+                  name="fileName"
+                  id="fileName"
+                  (change)="getFileName()"
+                  mdbInput mdbValidate
+                  [pattern]="'[A-Za-z .-]*'"
+                  required />
+      <label for="filename">Input File Name</label>
+      <button type="submit" class="btn "><i class="fas fa-save"></i>Download</button>
+    </div>
+</div>
 
-
-<table mdbTable class="table table-hover">
-  <thead class="d-flex-box p-2 col-example black white-text">
+<table mdbTable >
+  <thead class="d-flex-box p-2 col-example">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Прізвище, ім'я та по батькові</th>
-      <th colspan="3">Тижневе навантаження</th>
-      <th scope="col">Обсяг педагогічного<br> навантаження <br>(фактична кількість<br> педагогічних годн)</th>
-      <th scope="col">Тарифна ставка з<br> урахуваням підвищень</th>
-      <th scope="col">Зарплата</th>
+      <th scope="col">Full Name</th>
+      <th colspan="3">Week volume</th>
+      <th scope="col">Workload</th>
+      <th scope="col">Salary + add pay</th>
+      <th scope="col">Salary</th>
       <th scope="col">20%</th>
-      <th scope="col">Всього</th>
+      <th scope="col">Total</th>
     </tr>
     <tr class="d-flex-box flex-column p-2 col-example">
       <th colspan="2"></th>
-      <th scope="col">викл</th>
-      <th scope="col">конц</th>
-      <th scope="col">Разом</th>
+      <th scope="col">teach</th>
+      <th scope="col">concert</th>
+      <th scope="col">total</th>
       <th colspan="5"></th>
     </tr>
     <tr class="white black-text">
@@ -46,7 +53,7 @@
       <td>{{teacher.inAll}}</td><!-- тотал -->
     </tr>
       <tr>
-          <td colspan="2"><h6>Всього</h6></td>
+          <td colspan="2"><h6>Total</h6></td>
           <td >{{summList[0]}}</td>
           <td >{{summList[1]}}</td>
           <td >{{summList[2]}}</td>

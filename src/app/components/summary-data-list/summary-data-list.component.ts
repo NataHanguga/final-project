@@ -4,14 +4,17 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 
 @Component({
   selector: 'app-summary-data-list',
-  templateUrl: './summary-data-list.component.html'
+  templateUrl: './summary-data-list.component.html',
+  styleUrls: ['./summary-data-list.component.scss']
 })
 export class SummaryDataListComponent implements OnInit {
 
-  headerList = ['#', 'Посада', 'Кількість штатних одиниць', 'Розряд',
-          'Посадовий оклад', 'Вислуга', 'Надбавка та доплата',
-          '20%', 'Фонд зарплати за місяць', 'Фонд зарплати на рік',
-          'Оздоровчі', 'Щорічна винагорода', 'Разом'];
+  headerList = ['#', 'Position', 'Staff Amount', 'Grade', 'Salary', 'Service', 'Addition pay', '20%',
+                'Mounth salary fund', 'Year salary fund', 'By healthy', 'Annual reward', 'Total'];
+  // ['#', 'Посада', 'Кількість штатних одиниць', 'Розряд',
+  //         'Посадовий оклад', 'Вислуга', 'Надбавка та доплата',
+  //         '20%', 'Фонд зарплати за місяць', 'Фонд зарплати на рік',
+  //         'Оздоровчі', 'Щорічна винагорода', 'Разом'];
 
   propList = [];
   summPropList: any;
@@ -26,7 +29,7 @@ export class SummaryDataListComponent implements OnInit {
     this.getMaterList();
     this.getWorkSecure();
     this.getTotal();
-   }
+  }
 
   public getProperties() {
     this.prop.getDataForTable().subscribe(

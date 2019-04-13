@@ -9,14 +9,14 @@ import { Observable } from 'rxjs';
 export class LoginService {
 
   link = 'http://localhost:3000/api/';
-  isLoggedIn = false;
+  isLoggedIn = localStorage.getItem('logIn');
   constructor(private http: HttpClient) { }
 
   public postLogin(data): Observable<any> {
     return this.http
-               .post<any>(this.link + 'login', data)
-               .pipe(map(res => {
-                      this.isLoggedIn = true;
+                .post<any>(this.link + 'login', data)
+                .pipe(map(res => {
+                      localStorage.setItem('logIn', 'true');
                       return res;
                       },
                       err => err));

@@ -1,12 +1,12 @@
-<div class="headerTitle d-flex flex-row justify-content-between">
+<div class="headerTitle d-flex flex-row justify-content-between align-items-center">
   <h4>Category</h4>
-  <button class="btn click" 
+  <button class="btn-add click" 
           id="modalActivate" 
           data-toggle="modal" 
           data-target="#addPropModal">
-          Add</button>
+          <i class="fas fa-plus"></i></button>
 </div>
-
+<div class="containerList">
 <div class="list-group" *ngFor="let item of propList">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex justify-content-around" >
@@ -14,13 +14,13 @@
       <p class="w-50">price: {{item.price}}</p>
       <p class="w-50">level: {{item.level}}</p>
       <div class="d-flex w-100 justify-content-end">
-        <input class="btn btn-warning" type="button" (click)="editPropData(item._id)" id="modalActivate" data-toggle="modal" data-target="#editPropModal" value="Edit">
-        <input class="btn btn-danger" type="button" (click)="getId(item._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop">
+        <div class="btn btn-warning" type="button" (click)="editPropData(item._id)" id="modalActivate" data-toggle="modal" data-target="#editPropModal" value="Edit"><i class="fas fa-edit"></i></div>
+        <!-- <input class="btn btn-danger" type="button" (click)="getId(item._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop"> -->
     </div>
     </div>
   </a>
 </div> 
-
+</div>
 
 <!-- edit model -->
 <div class="modal fade right" 
@@ -37,7 +37,7 @@
           </h4>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <!-- <span class="sr-only">Close</span> -->
           </button>
         </div>
         <div class="modal-body">
@@ -120,7 +120,7 @@
                 </h4>
                 <button type="button" class="close" data-dismiss="modal">
                   <span aria-hidden="true">&times;</span>
-                  <span class="sr-only">Close</span>
+                  <!-- <span class="sr-only">Close</span> -->
                 </button>
           </div>
           <div class="modal-body">

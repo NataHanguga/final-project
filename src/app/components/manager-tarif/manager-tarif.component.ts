@@ -6,13 +6,14 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 @Component({
   selector: 'app-manager-tarif',
   templateUrl: './manager-tarif.component.html',
-  styleUrls: ['./manager-tarif.component.css']
+  styleUrls: ['./manager-tarif.component.scss']
 })
 export class ManagerTarifComponent implements OnInit {
 
-  headerTitle = ['№', 'Прізвище, ім\'я та по батькові',
-                'Відділ', 'Тарифна ставка з урахуванням підвищень',
-                 'Розмір оплати, %', 'Розмір оплати, грн'];
+  headerTitle = ['#', 'Full Name', 'Department', 'Salary + add pay', 'Pay size, %', 'Total'];
+  // ['№', 'Прізвище, ім\'я та по батькові',
+  //               'Відділ', 'Тарифна ставка з урахуванням підвищень',
+  //                'Розмір оплати, %', 'Розмір оплати, грн'];
   teachersList = [];
   teachersManager = [];
   total: number;

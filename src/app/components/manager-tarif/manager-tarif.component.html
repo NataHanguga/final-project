@@ -1,16 +1,23 @@
-<div class="headerTitle">
+<div class="wrapper d-flex flex-row justify-content-between align-items-center">
+  <div class="headerTitle">
     <h3>Manager Tarif List</h3>
   </div>
 
-  <div class="container" id="container">
-      <label for="filename">DownloadFile</label>
-        <input type="text" name="fileName" id="fileName" placeholder="Add file name" (change)="getFileName()">
-        <button type="submit"> Click for download file  </button>
-  </div>
-  
-<table mdbTable small="true">
-  <thead class="d-flex-box p-2 col-example black white-text">
-    <tr >
+  <div class="container md-form align-items-end" id="container">
+      <input type="text"
+                  name="fileName"
+                  id="fileName"
+                  (change)="getFileName()"
+                  mdbInput mdbValidate
+                  [pattern]="'[A-Za-z .-]*'"
+                  required />
+      <label for="filename">Input File Name</label>
+      <button type="submit" class="btn "><i class="fas fa-save"></i>Download</button>
+    </div>
+</div>
+<table mdbTable>
+  <thead class="d-flex-box p-2 col-example">
+    <tr>
       <th score="col" *ngFor="let header of headerTitle">{{header}}</th>
     </tr>
   </thead>
@@ -23,18 +30,20 @@
       <td>{{teacher.percent}}</td>
       <td>{{teacher.tarifAndIncrease}}</td>
     </tr>
-      <tr>
-          <td colspan="5"><h6>Всього</h6></td>
-          <td >{{summ}}</td>
-        </tr>
+    <tr>
+      <td colspan="5" style="text-align: left">
+        <h6>Total</h6>
+      </td>
+      <td>{{summ}}</td>
+    </tr>
   </tbody>
 </table>
 <div class="data">
-    <p>Середня педагогічна ставка {{midlePrice}}</p>
-    <p>Кількість педагогічних ставок за розрахунком годин - {{summList[3]}}</p>
-    <p>Фонд заробітної плати викладачів і концертмейстерів за місяць - {{summList[7]}}</p>
-    <p>Фонд оплати праці завідуючих відділами (відділеннями) за місяць  - {{summ}}</p>
-    <p>Фонд доплат та надбавка за почесні, вчені звання та наукові ступені за місяць</p>
-    <p>Фонд заробітної плати педагогічних працівників за місяць* - {{priceFond}}</p>
+  <p>Midle salary {{midlePrice}}</p>
+  <p>Pedagogical salary number by load hours - {{summList[3]}}</p>
+  <p>Mounth salary fund for teachers - {{summList[7]}}</p>
+  <p>Mounth salary fund for managers - {{summ}}</p>
+  <!-- <p>Фонд доплат та надбавка за почесні, вчені звання та наукові ступені за місяць</p> -->
+  <p>Mounth salary fund for persons with pedagogical title* - {{priceFond}}</p>
 
 </div>
