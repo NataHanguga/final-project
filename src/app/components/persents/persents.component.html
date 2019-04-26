@@ -1,23 +1,22 @@
-<div class="mb-1 headerTitle d-flex flex-row justify-content-between">
-  <h4>Pedagogical Title</h4>
-  <button class="btn click" id="modalActivate" data-toggle="modal" data-target="#addCardModal">Add</button>
-
+<div class="mb-1 headerTitle d-flex flex-row justify-content-between align-items-center">
+  <h4>Педагогічне звання</h4>
+  <button class="click btn-add" id="modalActivate" data-toggle="modal" data-target="#addCardModal"><i class="fas fa-plus"></i></button>
 </div>
-
+<div class="containerList">
 <div class="list-group" *ngFor="let percent of percentList">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex justify-content-around" >
       <h5 class="w-100">{{percent.learningPosition}}</h5>
-      <p class="w-100">persents {{percent.percent}}%</p>
+      <p class="w-100">відсоток {{percent.percent}}%</p>
       <div class="d-flex w-100 justify-content-end">
-        <input class="btn btn-warning" type="button" (click)="editPercentData(percent._id)" id="modalActivate" data-toggle="modal" data-target="#editCardModal" value="Edit">
-        <input class="btn btn-danger" type="button" (click)="getId(percent._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop1">
+        <div class="btn btn-warning" type="button" (click)="editPercentData(percent._id)" id="modalActivate" data-toggle="modal" data-target="#editCardModal" value="Edit"><i class="fas fa-edit"></i></div>
+        <!-- <input class="btn btn-danger" type="button" (click)="getId(percent._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop1"> -->
 
     </div>
     </div>
   </a>
 </div>
-
+</div>
 
 <!-- edit model -->
 <div class="modal fade right" id="editCardModal" tabindex="-1" role="dialog" aria-labelledby="editCardModalLabel"
@@ -25,10 +24,10 @@
   <div class="modal-dialog modal-notify modal-warning">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" id="editCardModalLabel">Edit Pedagogical Title</h4>
+        <h4 class="modal-title w-100 font-weight-bold" id="editCardModalLabel">Змінити педагогічне звання</h4>
         <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <!-- <span class="sr-only">Close</span> -->
           </button>
       </div>
       <div class="modal-body">
@@ -40,11 +39,9 @@
                       [pattern]="'[A-Za-z ]*'"
                       class="form-control"
                       mdbInput mdbValidate required />
-            <label for="learningPosition" data-error="wrong" data-success="right">Learning position</label>
-            <mdb-error *ngIf="learningPosition.invalid && (learningPosition.dirty || learningPosition.touched)">Learning
-              position invalid</mdb-error>
-            <mdb-success *ngIf="learningPosition.valid && (learningPosition.dirty || learningPosition.touched)">Learning
-              position valid</mdb-success>
+            <label for="learningPosition" data-error="wrong" data-success="right">Педагогічне звання</label>
+            <mdb-error *ngIf="learningPosition.invalid && (learningPosition.dirty || learningPosition.touched)">Педагогічне звання invalid</mdb-error>
+            <mdb-success *ngIf="learningPosition.valid && (learningPosition.dirty || learningPosition.touched)">Педагогічне звання valid</mdb-success>
           </div>
           <div class="md-form ">
             <input type="number"
@@ -56,16 +53,16 @@
                       formControlName="percent"
                       class="form-control"
                       mdbInput mdbValidate required />
-            <label for="percent" data-error="wrong" data-success="right">Percent</label>
-            <mdb-error *ngIf="percent.invalid && (percent.dirty || percent.touched)">Percent invalid</mdb-error>
-            <mdb-success *ngIf="percent.valid && (percent.dirty || percent.touched)">Percent valid</mdb-success>
+            <label for="percent" data-error="wrong" data-success="right">Відсоток</label>
+            <mdb-error *ngIf="percent.invalid && (percent.dirty || percent.touched)">Відсоток invalid</mdb-error>
+            <mdb-success *ngIf="percent.valid && (percent.dirty || percent.touched)">Відсоток valid</mdb-success>
           </div>
         </form>
       </div>
       <div class="form-group d-flex justify-content-center">
         <button class="btn click btn-warning"
                 (click)='changePercentData(this.id)'>
-                Edit Pedagogical Title</button>
+                Змінити педагогічне звання</button>
       </div>
     </div>
   </div>
@@ -78,10 +75,10 @@
   <div class="modal-dialog modal-info modal-notify">
     <div class="modal-content">
       <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold" id="editCardModalLabel">Add Pedagogical Title</h4>
+        <h4 class="modal-title w-100 font-weight-bold" id="editCardModalLabel">Додати педагогічне звання</h4>
         <button type="button" class="close" data-dismiss="modal">
               <span aria-hidden="true">&times;</span>
-              <span class="sr-only">Close</span>
+              <!-- <span class="sr-only">Close</span> -->
             </button>
       </div>
       <div class="modal-body">
@@ -90,14 +87,12 @@
             <input type="text"
                           id="learningPosition"
                           formControlName="learningPosition"
-                          [pattern]="'[A-Za-z ]*'"
+                          [pattern]="'[А-Яа-я- ]*'"
                           class="form-control"
                           mdbInput mdbValidate required />
-            <label for="learningPosition" data-error="wrong" data-success="right">Learning position</label>
-            <mdb-error *ngIf="learningPosition.invalid && (learningPosition.dirty || learningPosition.touched)">Learning
-              position invalid</mdb-error>
-            <mdb-success *ngIf="learningPosition.valid && (learningPosition.dirty || learningPosition.touched)">Learning
-              position valid</mdb-success>
+            <label for="learningPosition" data-error="wrong" data-success="right">Педагогічне звання</label>
+            <mdb-error *ngIf="learningPosition.invalid && (learningPosition.dirty || learningPosition.touched)">Педагогічне звання invalid</mdb-error>
+            <mdb-success *ngIf="learningPosition.valid && (learningPosition.dirty || learningPosition.touched)">Педагогічне звання valid</mdb-success>
           </div>
           <div class="md-form ">
             <input type="number"
@@ -109,16 +104,16 @@
                           formControlName="percent"
                           class="form-control"
                           mdbInput mdbValidate required />
-            <label for="percent" data-error="wrong" data-success="right">Percent</label>
-            <mdb-error *ngIf="percent.invalid && (percent.dirty || percent.touched)">Percent invalid</mdb-error>
-            <mdb-success *ngIf="percent.valid && (percent.dirty || percent.touched)">Percent valid</mdb-success>
+            <label for="percent" data-error="wrong" data-success="right">Відсоток</label>
+            <mdb-error *ngIf="percent.invalid && (percent.dirty || percent.touched)">Відсоток invalid</mdb-error>
+            <mdb-success *ngIf="percent.valid && (percent.dirty || percent.touched)">Відсоток valid</mdb-success>
           </div>
         </form>
       </div>
       <div class="md-form d-flex justify-content-center">
         <button class="btn btn-info click"
                   (click)='addPercentData()'>
-                  Add Pedagogical Title</button>
+                  Додати педагогічне звання</button>
       </div>
     </div>
   </div>
@@ -131,7 +126,7 @@
   <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
     <div class="modal-content text-center">
       <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Are you sure that u want delete <strong>Pedagogical Title</strong> item?</p>
+        <p class="heading">Впевнені, що хочете видалити <strong>педагогічне звання</strong>?</p>
       </div>
 
       <div class="modal-body">
@@ -145,13 +140,13 @@
             outline="true"
             data-dismiss="modal"
             class="waves-effect click1"
-            mdbWavesEffect>Yes</a>
+            mdbWavesEffect>Так</a>
         <a type="button"
             mdbBtn
             color="danger"
             class="waves-effect"
             mdbWavesEffect
-            data-dismiss="modal">No</a>
+            data-dismiss="modal">Ні</a>
       </div>
     </div>
     <!--/.Content-->

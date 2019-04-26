@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Teacher } from '../models/teacher.model';
+// import { Teacher } from '../models/teacher.model';
 import { environment } from '../../environments/environment';
 
 
@@ -12,8 +12,8 @@ export class TeachersService {
 
   constructor(private http: HttpClient) { }
 
-  public getTeachers(): Observable<Teacher[]> {
-    return this.http.get<Teacher[]>( environment.link + 'teachers' );
+  public getTeachers(): Observable<any> {
+    return this.http.get<any>( environment.link + 'teachers' );
   }
 
   public getTeacherById( id ): Observable<any> {

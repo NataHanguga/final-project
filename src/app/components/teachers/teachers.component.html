@@ -1,27 +1,25 @@
 <div class="containerHeader d-flex justify-content-between align-items-center">
   <div class="headerTitle">
-    <h3>TeacherList</h3>
+    <h3>Список викладачів</h3>
   </div>
-
   <div class="btn-add" data-toggle="modal" data-target="#myModalHorizontal">
-    Create Teacher Data
+    <i class="fas fa-plus"></i>
   </div>
-
-  <br>
 </div>
+
   <ul *ngFor="let teacher of teachersList; let i = index" class="w-100 list-group">
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <h4 class="card-title" id="{{teacher._id}}" (click)="showData(i)" data-toggle="modal"
         data-target="#showModalHorizontal">
-        <a>{{i+1}}. {{teacher.fullName}}</a>
+        <a>{{teacher.fullName}}</a>
       </h4>
+      
       <div class="buttons">
-        <input type="button" class="btn btn-warning" (click)="editTeacherData(teacher._id)" value="Edit" data-toggle="modal" data-target="#editModalHorizontal">
-        <input type="button" class="btn btn-danger btn-delete" (click)="getId(teacher._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop0" >
+        <div class="btn btn-warning" (click)="editTeacherData(teacher._id)" value="Edit" data-toggle="modal" data-target="#editModalHorizontal"><i class="fas fa-edit"></i></div>
+        <div class="btn btn-danger btn-delete" (click)="getId(teacher._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop0" ><i class="fas fa-user-slash"></i></div>
       </div>
     </li>
   </ul>
-<!-- (click)="deleteTeacherData(teacher._id)" -->
   <!-- show modal window -->
 
   <div class="modal fade top" id="showModalHorizontal" tabindex="-1" role="dialog"
@@ -30,26 +28,26 @@
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title form-title" id="showModalLabel">
-            User Data
+            Дані викладача
           </h4>
           <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span>
-                <span class="sr-only">Close</span>
-         </button>
+                <!-- <span class="sr-only">Close</span> -->
+          </button>
         </div>
         <div class="profileContainer d-flex flex-row align-items-center">
           <div class="profilePhoto"></div>
           <div class="profileData">
-            <div class="article">Full Name: <span id="fullNameShow"></span></div>
-            <div class="article">Education: <span id="educationShow"></span></div>
-            <div class="article">Category: <span id="categoryShow"></span></div>
-            <div class="article">Year: <span id="yearShow"></span></div>
-            <div class="article">Grade: <span id="gradeShow"></span></div>
-            <div class="article">Pedagogical Title(add position): <span id="pedagogicalTitleShow"></span></div>
-            <div class="article">Experience: <span id="experienceShow"></span></div>
-            <div class="article">Teach Hours: <span id="teachHoursShow"></span></div>
-            <div class="article">Concertmaster Hours: <span id="concertmasterHoursShow"></span></div>
-            <div class="article">Department: <span id="departmentShow"></span></div>
+            <div class="article">Повне ім'я: <span id="fullNameShow"></span></div>
+            <div class="article">Освіта: <span id="educationShow"></span></div>
+            <div class="article">Посада: <span id="categoryShow"></span></div>
+            <div class="article">Рік: <span id="yearShow"></span></div>
+            <div class="article">Розряд  ЄТС: <span id="gradeShow"></span></div>
+            <div class="article">Педагогічне звання: <span id="pedagogicalTitleShow"></span></div>
+            <div class="article">Стаж: <span id="experienceShow"></span></div>
+            <div class="article">Викл години: <span id="teachHoursShow"></span></div>
+            <div class="article">Конц години: <span id="concertmasterHoursShow"></span></div>
+            <div class="article">Відділ: <span id="departmentShow"></span></div>
           </div>
         </div>
       </div>
@@ -68,10 +66,10 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header text-center">
-          <h4 class="modal-title modal-title w-100 font-weight-bold" id="myModalLabel">Add New Teacher</h4>
+          <h4 class="modal-title modal-title w-100 font-weight-bold" id="myModalLabel">Додати нового викладача</h4>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <!-- <span class="sr-only">Close</span> -->
           </button>
         </div>
         <!-- Modal Body -->
@@ -80,6 +78,7 @@
                 role="form" 
                 [formGroup]="teacherItem" 
                 (ngSubmit)="createTeacherData()">
+            <div class="error" id="error"></div>
             <!-- fullName -->
             <div class="md-form ">
                 <input type="text" 
@@ -87,11 +86,11 @@
                         formControlName="fullName" 
                         class="form-control "
                         mdbInput mdbValidate
-                        [pattern]="'[A-Za-z .]*'"
+                        [pattern]="'[A-Za-z0-9 .-]*'"
                         required />
-                <label for="fullName" data-error="wrong" data-success="right">Full Name</label>
-                <mdb-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Full name invalid</mdb-error>
-                <mdb-success *ngIf="fullName.valid && (fullName.dirty || fullName.touched)">Full name valid</mdb-success>
+                <label for="fullName" data-error="wrong" data-success="right">Повне ім'я</label>
+                <mdb-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Повне ім'я недійсне</mdb-error>
+                <mdb-success *ngIf="fullName.valid && (fullName.dirty || fullName.touched)">Повне ім'я дійсне</mdb-success>
               </div>
             <!-- education -->
             <div class="md-form ">
@@ -101,24 +100,24 @@
                         class="form-control"
                         [pattern]="'[A-Za-z0-9 .-]*'"
                         mdbInput mdbValidate required />
-                <label for="education" data-error="wrong" data-success="right">Education</label>
-                <mdb-error *ngIf="education.invalid && (education.dirty || education.touched)">Education invalid</mdb-error>
-                <mdb-success *ngIf="education.valid && (education.dirty || education.touched)">Education valid</mdb-success>
+                <label for="education" data-error="wrong" data-success="right">Освіта</label>
+                <mdb-error *ngIf="education.invalid && (education.dirty || education.touched)">Освіта неvalid</mdb-error>
+                <mdb-success *ngIf="education.valid && (education.dirty || education.touched)">Освіта дійсне</mdb-success>
               </div>
             <!-- category -->
             <div class="md-form ">
-              <div for="category" data-error="wrong" data-success="right">Category</div>
+              <div for="category" data-error="wrong" data-success="right">Посада</div>
               <select id="category"
                       class="form-control"
                       formControlName="category"
                       (change)="selectItem($event)"
                       mdbValidate required >
-                  <option *ngFor="let grade of gradeList" [value]=grade.position>
+                  <option *ngFor="let grade of categoryList" [value]=grade.position>
                   {{grade.position}}
                   </option>
               </select>
-              <mdb-error *ngIf="category.value === null || category.value.length === 0">Category invalid</mdb-error>
-              <mdb-success *ngIf="category.valid && (category.dirty || category.touched)">Category valid</mdb-success>
+              <mdb-error *ngIf="category.value === null || category.value.length === 0">Посада недійсне</mdb-error>
+              <mdb-success *ngIf="category.valid && (category.dirty || category.touched)">Посада дійсне</mdb-success>
             </div>
             <!-- year -->
             <div class="md-form ">
@@ -128,28 +127,28 @@
                         class="form-control"
                         [pattern]="'[0-9]{4}'"
                         mdbInput mdbValidate required />
-                <label for="year" data-error="wrong" data-success="right">Year</label>
-                <mdb-error *ngIf="year.invalid && (year.dirty || year.touched)">Year invalid</mdb-error>
-                <mdb-success *ngIf="year.valid && (year.dirty || year.touched)">Year valid</mdb-success>
+                <label for="year" data-error="wrong" data-success="right">Рік</label>
+                <mdb-error *ngIf="year.invalid && (year.dirty || year.touched)">Рік недійсне</mdb-error>
+                <mdb-success *ngIf="year.valid && (year.dirty || year.touched)">Рік дійсне</mdb-success>
               </div>
             <!-- grade -->
             <div class="md-form ">
-              <div for="grade" data-error="wrong" data-success="right">Grade</div>
+              <div for="grade" data-error="wrong" data-success="right">Розряд ЄТС</div>
               <select id="select-type-basic"
                       formControlName="grade"
                       class="form-control"
                       (change)="selectItem($event)"
                       mdbValidate required >
-                  <option *ngFor="let grade of gradeList" [value]=grade.level>
-                  {{grade.level}}
+                  <option *ngFor="let grade of gradeList" [value]=grade>
+                  {{grade}}
                   </option>
               </select>
-              <mdb-error *ngIf="grade.value === null || grade.value.length === 0">Grade invalid</mdb-error>
-              <mdb-success *ngIf="grade.valid && (grade.dirty || grade.touched)">Grade valid</mdb-success>
+              <mdb-error *ngIf="grade.value === null || grade.value.length === 0">Розряд недійсне</mdb-error>
+              <mdb-success *ngIf="grade.valid && (grade.dirty || grade.touched)">Розряд дійсне</mdb-success>
             </div>
             <!-- pedagogicalTitle -->
             <div class="md-form ">
-              <div for="pedagogicalTitle" data-error="wrong" data-success="right">Pedagogical Title</div>
+              <div for="pedagogicalTitle" data-error="wrong" data-success="right">Педагогічне звання</div>
               <select id="pedagogicalTitle"
                       formControlName="pedagogicalTitle"
                       class="form-control"
@@ -159,8 +158,8 @@
                   {{position.learningPosition}}
                   </option>
               </select>
-              <mdb-error *ngIf="pedagogicalTitle.value === null || pedagogicalTitle.value.length === 0">Pedagogical title invalid</mdb-error>
-              <mdb-success *ngIf="pedagogicalTitle.valid && (pedagogicalTitle.dirty || pedagogicalTitle.touched)">Pedagogical title valid</mdb-success>
+              <mdb-error *ngIf="pedagogicalTitle.value === null || pedagogicalTitle.value.length === 0">Педагогічне звання недійсне</mdb-error>
+              <mdb-success *ngIf="pedagogicalTitle.valid && (pedagogicalTitle.dirty || pedagogicalTitle.touched)">Педагогічне звання дійсне</mdb-success>
             </div>
             <!-- experience -->   
             <div class="md-form ">
@@ -171,9 +170,9 @@
                         formControlName="experience" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="experience" data-error="wrong" data-success="right">Experience</label>
-                <mdb-error *ngIf="experience.invalid && (experience.dirty || experience.touched)">Experience invalid</mdb-error>
-                <mdb-success *ngIf="experience.valid && (experience.dirty || experience.touched)">Experience valid</mdb-success>
+                <label for="experience" data-error="wrong" data-success="right">Стаж</label>
+                <mdb-error *ngIf="experience.invalid && (experience.dirty || experience.touched)">Стаж недійсне</mdb-error>
+                <mdb-success *ngIf="experience.valid && (experience.dirty || experience.touched)">Стаж дійсне</mdb-success>
             </div>
             <!-- teachHours -->
             <div class="md-form ">
@@ -184,10 +183,10 @@
                         formControlName="teachHours" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="concertmasterHours" data-error="wrong" data-success="right">Teach Hours</label>
-                <mdb-error *ngIf="teachHours.invalid && (teachHours.dirty || teachHours.touched)">Teach Hours invalid</mdb-error>
-                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Teach Hours invalid. Check Teach Hours and Concertmaster Hours</mdb-error>
-                <mdb-success *ngIf="teachHours.valid && (teachHours.dirty || teachHours.touched)">Teach Hours valid</mdb-success>
+                <label for="concertmasterHours" data-error="wrong" data-success="right">Викладацькі години</label>
+                <mdb-error *ngIf="teachHours.invalid && (teachHours.dirty || teachHours.touched)">Викладацькі години недійсне</mdb-error>
+                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Викладацькі години недійсне. Check Teach Hours and Concertmaster Hours</mdb-error>
+                <mdb-success *ngIf="teachHours.valid && (teachHours.dirty || teachHours.touched)">Викладацькі години дійсне</mdb-success>
             </div>
             <!-- concertmasterHours -->
             <div class="md-form ">
@@ -198,10 +197,10 @@
                         formControlName="concertmasterHours" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="concertmasterHours" data-error="wrong" data-success="right">Concertmaster Hours</label>
-                <mdb-error *ngIf="concertmasterHours.invalid && (concertmasterHours.dirty || concertmasterHours.touched)">Concertmaster Hours invalid</mdb-error>
-                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Teach Hours invalid. Check Teach Hours and Concertmaster Hours</mdb-error>
-                <mdb-success *ngIf="concertmasterHours.valid && (concertmasterHours.dirty || concertmasterHours.touched)">Concertmaster Hours valid</mdb-success>
+                <label for="concertmasterHours" data-error="wrong" data-success="right">Концертмейстрські години</label>
+                <mdb-error *ngIf="concertmasterHours.invalid && (concertmasterHours.dirty || concertmasterHours.touched)">Концертмейстрські години недійсне</mdb-error>
+                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Концертмейстрські години недійсне. Check Teach Hours and Concertmaster Hours</mdb-error>
+                <mdb-success *ngIf="concertmasterHours.valid && (concertmasterHours.dirty || concertmasterHours.touched)">Концертмейстрські години дійсне</mdb-success>
             </div>
             <!-- department -->
             <div class="md-form ">
@@ -211,9 +210,9 @@
                         formControlName="department" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="department" data-error="wrong" data-success="right">Department</label>
-                <mdb-error *ngIf="department.invalid && (department.dirty || department.touched)">Department invalid</mdb-error>
-                <mdb-success *ngIf="department.valid && (department.dirty || department.touched)">Department valid</mdb-success>
+                <label for="department" data-error="wrong" data-success="right">Відділ</label>
+                <mdb-error *ngIf="department.invalid && (department.dirty || department.touched)">Відділ недійсний</mdb-error>
+                <mdb-success *ngIf="department.valid && (department.dirty || department.touched)">Відділ дійсний</mdb-success>
             </div>
 
           </form>
@@ -221,8 +220,7 @@
         <!-- Modal Footer -->
         <div class="modal-footer d-flex justify-content-center">
             <button class="btn login-form add btn-info waves-light"
-                    data-dismiss="modal"
-                    (click)="createTeacherData()">Add New Teacher Data</button>
+                    (click)="createTeacherData()">Додати нового викладача</button>
           </div>
       </div>
     </div>
@@ -240,12 +238,12 @@
       <div class="modal-content">
         <!-- Modal Header -->
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold" id="editModalLabel">Edit Teacher Data</h4>
+          <h4 class="modal-title w-100 font-weight-bold" id="editModalLabel">Змінити дані викладача</h4>
           <button type="button"
                   class="close"
                   data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <!-- <span class="sr-only">Close</span> -->
           </button>
 
         </div>
@@ -263,9 +261,9 @@
                         mdbInput mdbValidate
                         [pattern]="'[A-Za-z .]*'"
                         required />
-                <label for="fullNameInput" data-error="wrong" data-success="right">Full Name</label>
-                <mdb-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Full name invalid</mdb-error>
-                <mdb-success *ngIf="fullName.valid && (fullName.dirty || fullName.touched)">Full name valid</mdb-success>
+                <label for="fullNameInput" data-error="wrong" data-success="right">Повне ім'я</label>
+                <mdb-error *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)">Повне ім'я недійсне</mdb-error>
+                <mdb-success *ngIf="fullName.valid && (fullName.dirty || fullName.touched)">Повне ім'я дійсне</mdb-success>
             </div>
             <!-- education -->
             <div class="md-form ">
@@ -275,24 +273,22 @@
                         class="form-control"
                         [pattern]="'[A-Za-z0-9 .-]*'"
                         mdbInput mdbValidate required />
-                <label for="educationInput" data-error="wrong" data-success="right">Education</label>
-                <mdb-error *ngIf="education.invalid && (education.dirty || education.touched)">Education invalid</mdb-error>
-                <mdb-success *ngIf="education.valid && (education.dirty || education.touched)">Education valid</mdb-success>
+                <label for="educationInput" data-error="wrong" data-success="right">Освіта</label>
+                <mdb-error *ngIf="education.invalid && (education.dirty || education.touched)">Освіта недійсне</mdb-error>
+                <mdb-success *ngIf="education.valid && (education.dirty || education.touched)">Освіта дійсне</mdb-success>
             </div>
             <!-- category -->
             <div class="md-form ">
-                <div for="categoryInput" data-error="wrong" data-success="right">Category</div>
+                <div for="categoryInput" data-error="wrong" data-success="right">Посада</div>
                 <select id="categoryInput"
                         class="form-control"
                         formControlName="category"
-                        (change)="selectItem($event)"
-                        mdbValidate required >
-                        <option *ngFor="let position of gradeList" 
-                          [value]=position.position>
-                          {{position.position}}
-                        </option>
+                        (change)="selectItem($event)">
+                        <option *ngFor="let grade of categoryList" [value]=grade.position>
+                            {{grade.position}}
+                            </option>
                 </select>
-                <mdb-success *ngIf="category.valid">Category valid</mdb-success>
+                <mdb-success *ngIf="category.valid">Посада дійсна</mdb-success>
               </div>
             <!-- year -->
             <div class="md-form ">
@@ -302,28 +298,28 @@
                         class="form-control"
                         [pattern]="'[0-9]{4}'"
                         mdbInput mdbValidate required />
-                <label for="yearInput" data-error="wrong" data-success="right">Year</label>
-                <mdb-error *ngIf="year.invalid && (year.dirty || year.touched)">Year invalid</mdb-error>
-                <mdb-success *ngIf="year.valid && (year.dirty || year.touched)">Year valid</mdb-success>
+                <label for="yearInput" data-error="wrong" data-success="right">Рік</label>
+                <mdb-error *ngIf="year.invalid && (year.dirty || year.touched)">Рік недійсний</mdb-error>
+                <mdb-success *ngIf="year.valid && (year.dirty || year.touched)">Рік дійсний</mdb-success>
             </div>
             <!-- grade -->
             <div class="md-form ">
-                <div for="levelInput" data-error="wrong" data-success="right">Grade</div>
+                <div for="levelInput" data-error="wrong" data-success="right">Розряд ЄТС</div>
                 <select  id="levelInput"
                           class="form-control"                          
                           formControlName="grade"
                           (change)="selectItem($event)"
                           mdbValidate required >
                       <option *ngFor="let grade of gradeList" 
-                              [value]=grade.level>
-                      {{grade.level}}
+                              [value]=grade>
+                      {{grade}}
                       </option>
                   </select>
-                  <mdb-success *ngIf="grade.valid && (grade.dirty || grade.touched)">Grade valid</mdb-success>
+                  <mdb-success *ngIf="grade.valid && (grade.dirty || grade.touched)">Розряд дійсний</mdb-success>
               </div>
             <!-- pedagogicalTitle -->
             <div class="md-form ">
-                <div for="pedagogicalTitleInput" data-error="wrong" data-success="right">Grade</div>
+                <div for="pedagogicalTitleInput" data-error="wrong" data-success="right">Педагогічне звання</div>
                 <select id="pedagogicalTitleInput"
                         class="form-control custom-select"                          
                         formControlName="pedagogicalTitle"
@@ -333,7 +329,7 @@
                   {{position.learningPosition}}
                   </option>
                 </select>
-                <mdb-success *ngIf="pedagogicalTitle.valid && (pedagogicalTitle.dirty || pedagogicalTitle.touched)">Pedagogical title valid</mdb-success>
+                <mdb-success *ngIf="pedagogicalTitle.valid && (pedagogicalTitle.dirty || pedagogicalTitle.touched)">Педагогічне звання дійсне</mdb-success>
               </div>
             <!-- experience -->
             <div class="md-form ">
@@ -344,9 +340,9 @@
                         formControlName="experience" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="experienceInput" data-error="wrong" data-success="right">Experience</label>
-                <mdb-error *ngIf="experience.invalid && (experience.dirty || experience.touched)">Experience invalid</mdb-error>
-                <mdb-success *ngIf="experience.valid && (experience.dirty || experience.touched)">Experience valid</mdb-success>
+                <label for="experienceInput" data-error="wrong" data-success="right">Стаж</label>
+                <mdb-error *ngIf="experience.invalid && (experience.dirty || experience.touched)">Стаж недійсний</mdb-error>
+                <mdb-success *ngIf="experience.valid && (experience.dirty || experience.touched)">Стаж дійсний</mdb-success>
             </div>
             <!-- teachHours -->
             <div class="md-form ">
@@ -357,10 +353,10 @@
                         formControlName="teachHours" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="teachHoursInput" data-error="wrong" data-success="right">Teach Hours</label>
-                <mdb-error *ngIf="teachHours.invalid && (teachHours.dirty || teachHours.touched)">Teach Hours invalid</mdb-error>
-                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Teach Hours invalid. Check Teach Hours and Concertmaster Hours</mdb-error>
-                <mdb-success *ngIf="teachHours.valid && (teachHours.dirty || teachHours.touched)">Teach Hours valid</mdb-success>
+                <label for="teachHoursInput" data-error="wrong" data-success="right">Викладацькі години</label>
+                <mdb-error *ngIf="teachHours.invalid && (teachHours.dirty || teachHours.touched)">Викладацькі години недійсне</mdb-error>
+                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Викладацькі години недійсне. Check Teach Hours and Concertmaster Hours</mdb-error>
+                <mdb-success *ngIf="teachHours.valid && (teachHours.dirty || teachHours.touched)">Викладацькі години дійсне</mdb-success>
             </div>
             <!-- concertmasterHours -->
             <div class="md-form ">
@@ -371,10 +367,10 @@
                         formControlName="concertmasterHours" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="concertmasterHoursInput" data-error="wrong" data-success="right">Concertmaster Hours</label>
-                <mdb-error *ngIf="concertmasterHours.invalid && (concertmasterHours.dirty || concertmasterHours.touched)">Concertmaster Hours invalid</mdb-error>
-                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Teach Hours invalid. Check Teach Hours and Concertmaster Hours</mdb-error>
-                <mdb-success *ngIf="concertmasterHours.valid && (concertmasterHours.dirty || concertmasterHours.touched)">Concertmaster Hours valid</mdb-success>
+                <label for="concertmasterHoursInput" data-error="wrong" data-success="right">Концертмейстрські години</label>
+                <mdb-error *ngIf="concertmasterHours.invalid && (concertmasterHours.dirty || concertmasterHours.touched)">Концертмейстрські години недійсне</mdb-error>
+                <mdb-error *ngIf="+(teachHours.value) + +(concertmasterHours.value)>36">Концертмейстрські години недійсне. Check Teach Hours and Concertmaster Hours</mdb-error>
+                <mdb-success *ngIf="concertmasterHours.valid && (concertmasterHours.dirty || concertmasterHours.touched)">Концертмейстрські години дійсне</mdb-success>
             </div>
             <!-- department -->
             <div class="md-form ">
@@ -384,16 +380,16 @@
                         formControlName="department" 
                         class="form-control"
                         mdbInput mdbValidate required />
-                <label for="departmentInput" data-error="wrong" data-success="right">Department</label>
-                <mdb-error *ngIf="department.invalid && (department.dirty || department.touched)">Department invalid</mdb-error>
-                <mdb-success *ngIf="department.valid && (department.dirty || department.touched)">Department valid</mdb-success>
+                <label for="departmentInput" data-error="wrong" data-success="right">Відділ</label>
+                <mdb-error *ngIf="department.invalid && (department.dirty || department.touched)">Відділ недійсне</mdb-error>
+                <mdb-success *ngIf="department.valid && (department.dirty || department.touched)">Відділ дійсне</mdb-success>
             </div>
           </form>
         </div>
         <!-- Modal Footer -->
         <div class="d-flex justify-content-center">
           <div class="form-group container-login-form">
-            <button class="btn login-form click btn-warning" data-dismiss="modal" (click)="saveEditTeacherData()">Edit Teacher Data</button>
+            <button class="btn login-form click btn-warning" data-dismiss="modal" (click)="saveEditTeacherData()">Змінити дані викладача</button>
           </div>
         </div>
       </div>
@@ -407,7 +403,7 @@
   <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
     <div class="modal-content text-center">
       <div class="modal-header d-flex justify-content-center">
-        <p class="heading">Are you sure that u want delete teacher item?</p>
+        <p class="heading">Впевнені, що хочете видалити дані викладача??</p>
       </div>
 
       <div class="modal-body">
@@ -417,20 +413,20 @@
       <div class="modal-footer justify-content-center">
         <a (click)="deleteTeacherData()" 
             mdbBtn 
+            id=""
             color="danger" 
             outline="true" 
             data-dismiss="modal" 
             class="waves-effect click3"
-            mdbWavesEffect>Yes</a>
+            mdbWavesEffect>Так</a>
         <a type="button" 
             mdbBtn 
             color="danger" 
             class="waves-effect" 
             mdbWavesEffect 
-            data-dismiss="modal">No</a>
+            data-dismiss="modal">Ні</a>
       </div>
     </div>
-    <!--/.Content-->
   </div>
 </div>
 <!-- remove modal window -->

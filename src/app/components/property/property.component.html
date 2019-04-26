@@ -1,26 +1,26 @@
-<div class="headerTitle d-flex flex-row justify-content-between">
-  <h4>Category</h4>
-  <button class="btn click" 
+<div class="headerTitle d-flex flex-row justify-content-between align-items-center">
+  <h4>Посада</h4>
+  <button class="btn-add click" 
           id="modalActivate" 
           data-toggle="modal" 
           data-target="#addPropModal">
-          Add</button>
+          <i class="fas fa-plus"></i></button>
 </div>
-
+<div class="containerList">
 <div class="list-group" *ngFor="let item of propList">
   <a class="list-group-item list-group-item-action flex-column align-items-start">
     <div class="d-flex justify-content-around" >
       <h5 class="w-100">{{item.position}}</h5>
-      <p class="w-50">price: {{item.price}}</p>
-      <p class="w-50">level: {{item.level}}</p>
+      <p class="w-50">ставка: {{item.price}}</p>
+      <p class="w-50">розряд: {{item.level}}</p>
       <div class="d-flex w-100 justify-content-end">
-        <input class="btn btn-warning" type="button" (click)="editPropData(item._id)" id="modalActivate" data-toggle="modal" data-target="#editPropModal" value="Edit">
-        <input class="btn btn-danger" type="button" (click)="getId(item._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop">
+        <div class="btn btn-warning" type="button" (click)="editPropData(item._id)" id="modalActivate" data-toggle="modal" data-target="#editPropModal" value="Edit"><i class="fas fa-edit"></i></div>
+        <!-- <input class="btn btn-danger" type="button" (click)="getId(item._id)" value="Delete" data-toggle="modal" data-target="#frameModalTop"> -->
     </div>
     </div>
   </a>
 </div> 
-
+</div>
 
 <!-- edit model -->
 <div class="modal fade right" 
@@ -33,11 +33,11 @@
       <div class="modal-content">
         <div class="modal-header text-center">
           <h4 class="modal-title w-100 font-weight-bold" id="editPropModalLabel">
-            Edit Category Item
+            Змінити дані посади
           </h4>
           <button type="button" class="close" data-dismiss="modal">
             <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
+            <!-- <span class="sr-only">Close</span> -->
           </button>
         </div>
         <div class="modal-body">
@@ -48,11 +48,11 @@
                       id="position"
                       formControlName="position"
                       class="form-control"
-                      [pattern]="'[A-Za-z -]*'"
+                      [pattern]="'[А-Яа-я -]*'"
                       mdbInput mdbValidate required />
-              <label for="position" data-error="wrong" data-success="right">Category Title</label>
-              <mdb-error *ngIf="position.invalid && (position.dirty || position.touched)">Category Title invalid</mdb-error>
-              <mdb-success *ngIf="position.valid && (position.dirty || position.touched)">Category Title valid</mdb-success>
+              <label for="position" data-error="wrong" data-success="right">Назва посади</label>
+              <mdb-error *ngIf="position.invalid && (position.dirty || position.touched)">Назва посади invalid</mdb-error>
+              <mdb-success *ngIf="position.valid && (position.dirty || position.touched)">Назва посади valid</mdb-success>
             </div>
             <!-- price -->
             <div class="md-form ">
@@ -63,9 +63,9 @@
                       max="10000"
                       class="form-control"
                       mdbInput mdbValidate required/>
-              <label for="price" data-error="wrong" data-success="right">Price</label>
-              <mdb-error *ngIf="price.invalid && (price.dirty || price.touched)">Price invalid</mdb-error>
-              <mdb-success *ngIf="price.valid && (price.dirty || price.touched)">Price valid</mdb-success>
+              <label for="price" data-error="wrong" data-success="right">Ставка</label>
+              <mdb-error *ngIf="price.invalid && (price.dirty || price.touched)">Ставка invalid</mdb-error>
+              <mdb-success *ngIf="price.valid && (price.dirty || price.touched)">Ставка valid</mdb-success>
             </div>
             <!-- level -->
             <div class="md-form">
@@ -77,9 +77,9 @@
                         max="14"
                         class="form-control"
                         mdbInput mdbValidate required/>
-                <label for="level" data-error="wrong" data-success="right">Level</label>                
-                <mdb-error *ngIf="level.invalid && (level.dirty || level.touched)">Level invalid</mdb-error>
-                <mdb-success *ngIf="level.valid && (level.dirty || level.touched)">Level valid</mdb-success>
+                <label for="level" data-error="wrong" data-success="right">Розряд ЄТС</label>                
+                <mdb-error *ngIf="level.invalid && (level.dirty || level.touched)">Розряд invalid</mdb-error>
+                <mdb-success *ngIf="level.valid && (level.dirty || level.touched)">Розряд valid</mdb-success>
               </div>
               <!-- staffUnitsAmounts -->
               <div class="md-form">
@@ -90,15 +90,15 @@
                           max="30"
                           class="form-control"
                           mdbInput mdbValidate required />
-                  <label for="staffUnitsAmounts" data-error="wrong" data-success="right">Number of workers(*if teacher item - set 0)</label>                
-                  <mdb-error *ngIf="staffUnitsAmounts.invalid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Number of workers invalid</mdb-error>
-                  <mdb-success *ngIf="staffUnitsAmounts.valid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Number of workers valid</mdb-success>
+                  <label for="staffUnitsAmounts" data-error="wrong" data-success="right">Кількість працівників(*if teacher item - set 0)</label>                
+                  <mdb-error *ngIf="staffUnitsAmounts.invalid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Кількість працівників invalid</mdb-error>
+                  <mdb-success *ngIf="staffUnitsAmounts.valid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Кількість працівників valid</mdb-success>
                 </div>
           </form>
         </div>
         <div class="d-flex justify-content-center">
           <button class="btn click btn-warning" 
-                  (click)="changePropData()">Edit Category Item</button>
+                  (click)="changePropData()">Зінити дані посади</button>
         </div>
       </div>
     </div>
@@ -116,11 +116,11 @@
         <div class="modal-content">
           <div class="modal-header text-center">
               <h4 class="modal-title w-100 font-weight-bold" id="editPropModalLabel">
-                  Add Category Item
+                  Додати посаду
                 </h4>
                 <button type="button" class="close" data-dismiss="modal">
                   <span aria-hidden="true">&times;</span>
-                  <span class="sr-only">Close</span>
+                  <!-- <span class="sr-only">Close</span> -->
                 </button>
           </div>
           <div class="modal-body">
@@ -133,9 +133,9 @@
                         class="form-control"
                         [pattern]="'[A-Za-z -]*'"
                         mdbInput mdbValidate required />
-                <label for="position" data-error="wrong" data-success="right">Category Title</label>
-                <mdb-error *ngIf="position.invalid && (position.dirty || position.touched)">Category Title invalid</mdb-error>
-                <mdb-success *ngIf="position.valid && (position.dirty || position.touched)">Category Title valid</mdb-success>
+                <label for="position" data-error="wrong" data-success="right">Назва посади</label>
+                <mdb-error *ngIf="position.invalid && (position.dirty || position.touched)">Назва посади invalid</mdb-error>
+                <mdb-success *ngIf="position.valid && (position.dirty || position.touched)">Назва посади valid</mdb-success>
               </div>
               <!-- price -->
               <div class="md-form ">
@@ -146,9 +146,9 @@
                         max="10000"
                         class="form-control"
                         mdbInput mdbValidate required/>
-                <label for="price" data-error="wrong" data-success="right">Price</label>
-                <mdb-error *ngIf="price.invalid && (price.dirty || price.touched)">Price invalid</mdb-error>
-                <mdb-success *ngIf="price.valid && (price.dirty || price.touched)">Price valid</mdb-success>
+                <label for="price" data-error="wrong" data-success="right">Ставка</label>
+                <mdb-error *ngIf="price.invalid && (price.dirty || price.touched)">Ставка invalid</mdb-error>
+                <mdb-success *ngIf="price.valid && (price.dirty || price.touched)">Ставка valid</mdb-success>
               </div>
               <!-- level -->
               <div class="md-form">
@@ -159,9 +159,9 @@
                           max="14"
                           class="form-control"
                           mdbInput mdbValidate required/>
-                  <label for="level" data-error="wrong" data-success="right">Level</label>                
-                  <mdb-error *ngIf="level.invalid && (level.dirty || level.touched)">Level invalid</mdb-error>
-                  <mdb-success *ngIf="level.valid && (level.dirty || level.touched)">Level valid</mdb-success>
+                  <label for="level" data-error="wrong" data-success="right">Розряд ЄТС</label>                
+                  <mdb-error *ngIf="level.invalid && (level.dirty || level.touched)">Розряд invalid</mdb-error>
+                  <mdb-success *ngIf="level.valid && (level.dirty || level.touched)">Розряд valid</mdb-success>
                 </div>
                 <!-- staffUnitsAmounts -->
                 <div class="md-form">
@@ -172,15 +172,15 @@
                             max="30"
                             class="form-control"
                             mdbInput mdbValidate required />
-                    <label for="staffUnitsAmounts" data-error="wrong" data-success="right">Number of workers(*if teacher item - set 0)</label>                
-                    <mdb-error *ngIf="staffUnitsAmounts.invalid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Number of workers invalid</mdb-error>
-                    <mdb-success *ngIf="staffUnitsAmounts.valid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Number of workers valid</mdb-success>
+                    <label for="staffUnitsAmounts" data-error="wrong" data-success="right">Кількість працівників(*if teacher item - set 0)</label>                
+                    <mdb-error *ngIf="staffUnitsAmounts.invalid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Кількість працівників invalid</mdb-error>
+                    <mdb-success *ngIf="staffUnitsAmounts.valid && (staffUnitsAmounts.dirty || staffUnitsAmounts.touched)">Кількість працівників valid</mdb-success>
                   </div>
             </form>
           </div>
           <div class="d-flex justify-content-center">
               <button class="btn click btn-info " 
-                      (click)='addPropData()'>Add Category Item</button>
+                      (click)='addPropData()'>Додати посаду</button>
   
           </div>
         </div>
@@ -194,7 +194,7 @@ aria-hidden="true">
 <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
   <div class="modal-content text-center">
     <div class="modal-header d-flex justify-content-center">
-      <p class="heading">Are you sure that u want delete <strong>Category Title</strong> item?</p>
+      <p class="heading">Впевнені, що хочете видалити<strong>посаду</strong>?</p>
     </div>
 
     <div class="modal-body">
@@ -208,13 +208,13 @@ aria-hidden="true">
           outline="true"
           data-dismiss="modal"
           class="waves-effect click2"
-          mdbWavesEffect>Yes</a>
+          mdbWavesEffect>Так</a>
       <a type="button"
           mdbBtn
           color="danger"
           class="waves-effect"
           mdbWavesEffect
-          data-dismiss="modal">No</a>
+          data-dismiss="modal">Ні</a>
     </div>
   </div>
   <!--/.Content-->

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
-  templateUrl: './registration.component.html'
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
 
@@ -12,7 +14,8 @@ export class RegistrationComponent implements OnInit {
   submitted = false;
 
   constructor(private formBuilder: FormBuilder,
-              private auth: LoginService) { }
+              private auth: LoginService,
+              private router: Router) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
@@ -40,12 +43,14 @@ export class RegistrationComponent implements OnInit {
   } else {
     this.submitted = true;
     console.log(this.registerForm.value);
-    if (this.auth.checkPassword(this.registerForm.value.password,
-                                this.registerForm.value.confirmPassword)) {
-      this.auth.postRegistration(this.registerForm.value)
-          .subscribe(res =>
-            console.log(res));
-    }
+    if (this.auth
+          .checkPassword(this.registerForm.value.password, this.registerForm.value.confirmPassword)) {
+            this.auth.postRegistration(this.registerForm.value)
+              .subscribe(res => {
+                console.log(res);
+                this.router.navigate(['login']);
+              });
+              }
     }
 }
 

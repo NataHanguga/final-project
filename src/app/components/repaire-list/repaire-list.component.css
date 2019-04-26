@@ -4,3 +4,7 @@
 #container{
     display: block;
 }
+.btn{
+    background-color: blue;
+    color: #fff;
+}

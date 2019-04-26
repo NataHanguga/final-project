@@ -1,50 +1,48 @@
-import {Component, OnInit} from '@angular/core';
-import {TeachersService} from 'src/app/services/teachers.service';
-import {Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { TeachersService } from 'src/app/services/teachers.service';
+import { Router } from '@angular/router';
 import {
   FormGroup,
   FormBuilder,
   Validators
 } from '@angular/forms';
-import {GradeService} from 'src/app/services/grade.service';
-import {PersentsService} from 'src/app/services/persents.service';
+import { GradeService } from 'src/app/services/grade.service';
+import { PersentsService } from 'src/app/services/persents.service';
 
 @Component({
   selector: 'app-teachers',
   templateUrl: './teachers.component.html',
-  styleUrls: ['./teachers.component.css']
+  styleUrls: ['./teachers.component.scss']
 })
 
 export class TeachersComponent implements OnInit {
 
   constructor(private teachers: TeachersService,
-              private route: Router,
+              // private route: Router,
               private formBuilder: FormBuilder,
               private percentService: PersentsService,
-              private gradeService: GradeService) {
-  }
+              private gradeService: GradeService) { }
 
   teachersList: {};
   teacherItem: FormGroup;
   total: number;
-  gradeList: [];
+  gradeList: any[];
   percentList: [];
-  gradeItem: any;
-  percentItem: any;
+  categoryList: any[];
 
   ngOnInit() {
     this.getTeachers();
     this.teacherItem = this.formBuilder.group({
-      fullName: ['vuumk', Validators.required],
+      fullName: ['', Validators.required],
       education: ['high', Validators.required],
       category: ['', Validators.required],
       year: ['2018', Validators.compose([Validators.required, Validators.min(2000), Validators.max(2019)])],
-      grade: ['', Validators.required],
+      grade: ['13',  Validators.required],
       pedagogicalTitle: ['', Validators.required],
       experience: ['12',
-        Validators.compose([Validators.required,
-          Validators.min(0),
-          Validators.max(50)])],
+                    Validators.compose([Validators.required,
+                                        Validators.min(0),
+                                        Validators.max(50)])],
       teachHours: ['20', Validators.compose([Validators.required, Validators.min(0), Validators.max(36)])],
       concertmasterHours: ['14', Validators.compose([Validators.required, Validators.min(0), Validators.max(36)])],
       department: ['art', Validators.required],
@@ -53,45 +51,16 @@ export class TeachersComponent implements OnInit {
     this.getPedTitle();
   }
 
-  get fullName() {
-    return this.teacherItem.get('fullName');
-  }
-
-  get education() {
-    return this.teacherItem.get('education');
-  }
-
-  get category() {
-    return this.teacherItem.get('category');
-  }
-
-  get year() {
-    return this.teacherItem.get('year');
-  }
-
-  get grade() {
-    return this.teacherItem.get('grade');
-  }
-
-  get pedagogicalTitle() {
-    return this.teacherItem.get('pedagogicalTitle');
-  }
-
-  get experience() {
-    return this.teacherItem.get('experience');
-  }
-
-  get teachHours() {
-    return this.teacherItem.get('teachHours');
-  }
-
-  get concertmasterHours() {
-    return this.teacherItem.get('concertmasterHours');
-  }
-
-  get department() {
-    return this.teacherItem.get('department');
-  }
+  get fullName() {return this.teacherItem.get('fullName'); }
+  get education() {return this.teacherItem.get('education'); }
+  get category() {return this.teacherItem.get('category'); }
+  get year() {return this.teacherItem.get('year'); }
+  get grade() {return this.teacherItem.get('grade'); }
+  get pedagogicalTitle() {return this.teacherItem.get('pedagogicalTitle'); }
+  get experience() {return this.teacherItem.get('experience'); }
+  get teachHours() {return this.teacherItem.get('teachHours'); }
+  get concertmasterHours() {return this.teacherItem.get('concertmasterHours'); }
+  get department() {return this.teacherItem.get('department'); }
 
 
   public getTeachers() {
@@ -100,8 +69,8 @@ export class TeachersComponent implements OnInit {
         this.teachersList = res;
         this.total = Object.keys(res).length;
         console.log(this.teachersList, this.total);
-      }
-    );
+        }
+      );
   }
 
   public selectItem(event: any) {
@@ -109,11 +78,23 @@ export class TeachersComponent implements OnInit {
     return event.target.value;
   }
 
+  public distinct = (value, index, self) => {
+    return self.indexOf(value) === index;
+  }
   public getPosition() {
     this.gradeService.getGrades().subscribe(
       res => {
-        this.gradeList = res;
-        console.log(this.gradeList);
+        const arr = [];
+        res.map((item) => {
+          arr.push(+(item.level));
+        });
+        this.gradeList = arr
+          .filter(this.distinct)
+          .sort((a, b) => {
+            return (a - b);
+          });
+        this.categoryList = res;
+        console.log(1111, this.gradeList, this.categoryList);
       });
   }
 
@@ -131,21 +112,34 @@ export class TeachersComponent implements OnInit {
   }
 
   public createTeacherData() {
-    console.log(this.teacherItem.value);
+    if (this.teacherItem.valid) {
     this.teachers.createTeacher(this.teacherItem.value)
       .subscribe(res => {
         this.getTeachers();
         console.log(res);
       });
+    } else {
+      window.alert('No valid form. Check data');
+      return;
+    }
+  }
+
+  public getId(id) {
+    const but = document.querySelector('.click3');
+    but.id = id.toString();
+    console.log(id, but);
   }
 
   public deleteTeacherData() {
-    const but = document.querySelector('.click1');
+    const but = document.querySelector('.click3');
     const id = but.id;
+    console.log(but, id);
     for (let i = 0; i < this.total; i++) {
       if (this.teachersList[i]._id === id) {
+        console.log(id);
         this.teachers.deleteTeacher(this.teachersList[i]).subscribe(
           res => {
+            console.log(res);
             this.getTeachers();
           });
       }
@@ -185,14 +179,6 @@ export class TeachersComponent implements OnInit {
         console.log(this.teachersList[i].category, 1, inputCategory.value, 1);
       }
     }
-
-
-  }
-
-  getId(id) {
-    const but = document.querySelector('.click3');
-    but.id = id;
-    console.log(id, but);
   }
 
   check(val) {
@@ -213,27 +199,27 @@ export class TeachersComponent implements OnInit {
     const inputDepartment = (document.getElementById('departmentInput') as HTMLInputElement).value;
 
     if (this.check(inputName) && this.check(inputEducation) &&
-      this.check(inputCategory) && this.check(inputYear) &&
-      this.check(inputGrade) && this.check(inputPedagogicalTitle) &&
-      this.check(inputExperience) && this.check(inputTeachHours) &&
-      this.check(inputConcertmasterHours) && this.check(inputDepartment)) {
-      this.teachersList[i].fullName = inputName;
-      this.teachersList[i].education = inputEducation;
-      this.teachersList[i].category = inputCategory;
-      this.teachersList[i].year = inputYear;
-      this.teachersList[i].grade = inputGrade;
-      this.teachersList[i].pedagogicalTitle = inputPedagogicalTitle;
-      this.teachersList[i].experience = inputExperience;
-      this.teachersList[i].teachHours = inputTeachHours;
-      this.teachersList[i].concertmasterHours = inputConcertmasterHours;
-      this.teachersList[i].department = inputDepartment;
+        this.check(inputCategory) && this.check(inputYear) &&
+        this.check(inputGrade) && this.check(inputPedagogicalTitle) &&
+        this.check(inputExperience) && this.check(inputTeachHours) &&
+        this.check(inputConcertmasterHours) && this.check(inputDepartment)) {
+          this.teachersList[i].fullName = inputName;
+          this.teachersList[i].education = inputEducation;
+          this.teachersList[i].category = inputCategory;
+          this.teachersList[i].year = inputYear;
+          this.teachersList[i].grade = inputGrade;
+          this.teachersList[i].pedagogicalTitle = inputPedagogicalTitle;
+          this.teachersList[i].experience = inputExperience;
+          this.teachersList[i].teachHours = inputTeachHours;
+          this.teachersList[i].concertmasterHours = inputConcertmasterHours;
+          this.teachersList[i].department = inputDepartment;
 
-      this.teachers.editTeacher(this.teachersList[i]).subscribe(
-        res => {
-          this.getTeachers();
-          console.log(res);
-        }
-      );
+          this.teachers.editTeacher(this.teachersList[i]).subscribe(
+            res => {
+              this.getTeachers();
+              console.log(res);
+            }
+          );
     } else {
       window.alert('some field is empty or not required');
       return;
@@ -244,7 +230,6 @@ export class TeachersComponent implements OnInit {
   public findDataByIndex(i, id, atr) {
     return document.getElementById(id).innerHTML = this.teachersList[i][atr];
   }
-
   public showData(i) {
     this.findDataByIndex(i, 'fullNameShow', 'fullName');
     this.findDataByIndex(i, 'educationShow', 'education');

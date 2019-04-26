@@ -1,7 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+
 .headerTitle{
   text-align: center;
-  margin-top: 20px;
+  // margin-top: -10px;
+  margin-bottom: 30px;
 }
 mdb-error{
   color: red;
@@ -14,4 +18,133 @@ mdb-success{
 }
 input .form-control{
   margin-bottom: 0;
+}
+div .buttonin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0;
+  // margin-bottom: 20px;
+}
+
+.cta {
+  display: flex;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #6225E6;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+}
+
+.cta:focus {
+  outline: none;
+}
+
+.cta:hover {
+  transition: 0.5s;
+  box-shadow: 10px 10px 0 #F1FAEE;
+}
+
+.cta span:nth-child(2) {
+  transition: 0.5s;
+  margin-right: 0px;
+}
+
+.cta:hover span:nth-child(2) {
+  transition: 0.5s;
+  margin-right: 20px;
+}
+
+span {
+  transform: skewX(15deg)
+}
+
+span:nth-child(2) {
+  width: 20px;
+  margin-left: 30px;
+  position: relative;
+  top: 12%;
+}
+
+/**************SVG****************/
+
+path.one {
+  transition: 0.4s;
+  transform: translateX(-60%);
+}
+
+path.two {
+  transition: 0.5s;
+  transform: translateX(-30%);
+}
+
+.cta:hover path.three {
+  animation: color_anim 1s infinite 0.2s;
+}
+
+.cta:hover path.one {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
+}
+
+.cta:hover path.two {
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
+}
+
+.btn-add {
+  /* display: inline-block; */
+  padding: 20px 25px;
+  margin: 20px 0;
+  position: relative;
+  border: 1px solid #ececec;
+  border-radius: 50%;
+  color: #ecf0f1;
+  background-color: #5584ff;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+
+}
+.btn-add:hover { 
+  animation: wobbleud 0.5s linear infinite;
+}
+
+
+tbody {
+  
+  background: white;
+  /* font-family: 'Monserat', sans-serif; */
+}
+
+tbody > tr > td, tbody> tr > th{
+  height: 80px;
+  vertical-align: middle;
+  text-align: center;
+
+}
+thead{
+  text-align: center;
+  color: #555;
+}
+
+
+/* SVG animations */
+
+@keyframes color_anim {
+  0% {
+      fill: white;
+  }
+
+  50% {
+      fill: #F1FAEE;
+  }
+
+  100% {
+      fill: white;
+  }
 }

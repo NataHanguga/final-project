@@ -1,0 +1,26 @@
+ tbody {
+  
+  background: white;
+  /* font-family: 'Monserat', sans-serif; */
+}
+
+tbody > tr > td, tbody> tr > th{
+  height: 80px;
+  vertical-align: middle;
+  text-align: center;
+
+}
+thead{
+  text-align: center;
+  color: #555;
+}
+
+.container{
+  display: flex;
+  justify-content: end;
+  
+}
+.btn{
+  background-color: blue;
+  color: #fff;
+}

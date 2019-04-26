@@ -1,21 +1,28 @@
-<div class="headerTitle">
-    <h3>Tarif List</h3>
+<div class="wrapper d-flex flex-row justify-content-between align-items-center">
+  <div class="headerTitle ">
+    <h3>Тарифікаційний список</h3>
   </div>
-
-  <div class="container" id="container">
-      <label for="filename">DownloadFile</label>
-        <input type="text" name="fileName" id="fileName" placeholder="Add file name" (change)="getFileName()">
-        <button type="submit"> Click for download file  </button>
+  <div class="container md-form align-items-end" id="container">
+    <input type="text"
+                name="fileName"
+                id="fileName"
+                (change)="getFileName()"
+                mdbInput mdbValidate
+                [pattern]="'[A-Za-z .-]*'"
+                required />
+    <label for="filename">Введіть ім'я файлу</label>
+    <button type="submit" class="btn "><i class="fas fa-save"></i>Завантажити</button>
   </div>
+</div>
 
 <table mdbTable small="true">
-  <thead class="black white-text">
+  <thead borderless="true">
     <tr>
       <th *ngFor="let head of headerElements; let i = index" scope="col">{{head}} </th>
     </tr>
-    <tr class="white black-text">
+    <!-- <tr class="">
         <th *ngFor="let num of headerNumbers" scope="col">{{num}}</th>
-    </tr>
+    </tr> -->
   </thead>
   <tbody>
     <tr mdbTableCol *ngFor="let teacher of teachersList; let i = index">

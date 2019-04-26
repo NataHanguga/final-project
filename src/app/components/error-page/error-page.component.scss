@@ -1,0 +1,67 @@
+.wrapper{
+  min-width: 100vw;
+  min-height: 100vh;
+  background-image: url('../../../assets/image/paul-280209-2000x1333.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: .8;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 10;
+  display: block;
+  background-color: rgb(99, 90, 81);
+}
+
+.text-container{
+  text-align: left;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: stretch;
+  word-wrap: break-word;
+  max-width: 720px;
+  color: #fff;
+  max-width: 80%;
+  font-family: 'Rubik', sans-serif;
+  margin-top: 10%;
+}
+
+.bigText{
+  font-size: 4.25rem;
+  font-weight: 300;
+  line-height: 1.2;
+  width: 100%;
+}
+
+.smallText{
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 1.6;
+  box-sizing: inherit;
+  display: block;
+}
+.mbr-section-btn{
+  margin-left: -.25rem;
+  margin-right: -.25rem;
+  font-size: 0;
+  border-color: #ffffff;
+  color: #333333 !important;
+}
+.mbr-section-btn a.btn:not{
+  border-radius: 10px;
+
+}
+.button {
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin: .4rem .8rem !important;
+  transition: all 0.3s ease-in-out;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+}

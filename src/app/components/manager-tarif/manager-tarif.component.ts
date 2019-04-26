@@ -6,7 +6,7 @@ import { SaveDocumentsService } from 'src/app/services/save-documents.service';
 @Component({
   selector: 'app-manager-tarif',
   templateUrl: './manager-tarif.component.html',
-  styleUrls: ['./manager-tarif.component.css']
+  styleUrls: ['./manager-tarif.component.scss']
 })
 export class ManagerTarifComponent implements OnInit {
 
